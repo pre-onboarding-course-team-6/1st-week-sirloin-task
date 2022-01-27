@@ -1,14 +1,21 @@
 /* eslint-disable react/button-has-type */
 import React from "react";
 
-function InformationNotice({ inputField, index, handleChangeInput }) {
+function InformationNotice({
+  inputField,
+  index,
+  handleChangeInput,
+  handleDeleteFields,
+}) {
   return (
     <div style={{ border: "2px solid red" }}>
       <div>
         <h3>
           정보고시 <span>{index + 1}</span>
         </h3>
-        <button>삭제</button>
+        <button onClick={(event) => handleDeleteFields(index, event)}>
+          삭제
+        </button>
       </div>
       <div>
         <span>제품명 / 중량</span>
