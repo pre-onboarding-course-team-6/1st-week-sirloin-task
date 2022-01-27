@@ -3,10 +3,12 @@ import * as S from "./styled";
 
 function ExposurePeriod() {
   return (
-    <>
-      <S.Title>노출 및 판매기간 설정</S.Title>
-      <table>
-        <tr>
+    <S.Table>
+      <tbody>
+        <S.TableRow>
+          <S.Title colSpan="2">노출 및 판매기간설정</S.Title>
+        </S.TableRow>
+        <S.TableRow>
           <S.Content>상품 노출 기한</S.Content>
           <S.SettingBox>
             <S.RadioBox>
@@ -15,7 +17,7 @@ function ExposurePeriod() {
                 value="no-limit"
                 id="no-limit"
                 name="no-limit"
-                checked
+                defaultChecked
               />
               <S.Label>제한없음</S.Label>
             </S.RadioBox>
@@ -39,8 +41,8 @@ function ExposurePeriod() {
             </S.RadioBox>
             <div>달력</div>
           </S.SettingBox>
-        </tr>
-        <tr>
+        </S.TableRow>
+        <S.TableRow>
           <S.Content>상품 판매 기한</S.Content>
           <S.SettingBox>
             <S.RadioBox>
@@ -49,7 +51,7 @@ function ExposurePeriod() {
                 value="no-limit"
                 id="no-limit"
                 name="no-limit"
-                checked
+                defaultChecked
               />
               <S.Label>제한없음</S.Label>
             </S.RadioBox>
@@ -73,9 +75,9 @@ function ExposurePeriod() {
             </S.RadioBox>
             <div>달력</div>
           </S.SettingBox>
-        </tr>
-      </table>
-    </>
+        </S.TableRow>
+      </tbody>
+    </S.Table>
   );
 }
 
