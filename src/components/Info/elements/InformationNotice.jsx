@@ -1,3 +1,5 @@
+/* eslint-disable no-alert */
+/* eslint-disable consistent-return */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/button-has-type */
 import React, { useState } from "react";
@@ -14,6 +16,20 @@ function InformationNotice({
   const [moreFields, setMoreFields] = useState([
     { ...INFO_NOTI_MORE_TEMPLATE },
   ]);
+
+  const handleDeleteMore = (moreIndex, event) => {
+    event.preventDefault();
+
+    if (moreIndex === 0) {
+      return alert("추가 항목은 필수로 입력을 안하셔도 좋습니다.");
+    }
+
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      const result = [...moreFields];
+      result.splice(index, 1);
+      setMoreFields(result);
+    }
+  };
 
   const handleAddFields = (e) => {
     e.preventDefault();
@@ -101,7 +117,7 @@ function InformationNotice({
           moreField={moreField}
           moreIndex={moreIndex}
           handleChangeMore={handleChangeMore}
-          //   handleDeleteFields={handleDeleteFields}
+          handleDeleteMore={handleDeleteMore}
         />
       ))}
 
