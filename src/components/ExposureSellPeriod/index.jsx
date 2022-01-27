@@ -29,8 +29,27 @@ function Calendar(props) {
   );
 }
 
+function RadioBoxSet(props) {
+  const { value, state, onStateChange } = props;
+  return (
+    <S.RadioBox>
+      <S.RaidoBotton
+        type="radio"
+        value={value}
+        checked={state === value}
+        onChange={onStateChange}
+      />
+      <S.Label>{value}</S.Label>
+    </S.RadioBox>
+  );
+}
+
 function ExposurePeriod(props) {
-  const { exposurePeriod, setExposurePeriod, setExposure } = props;
+  const { setExposure } = props;
+  const [exposurePeriod, setExposurePeriod] = useState({
+    startDate: new Date(),
+    endDate: new Date(),
+  });
   const [state, setState] = useState("제한없음");
 
   const onStateChange = (e) => {
@@ -50,33 +69,21 @@ function ExposurePeriod(props) {
       <S.Content>상품 노출 기한</S.Content>
       <S.SettingBox>
         <form>
-          <S.RadioBox>
-            <S.RaidoBotton
-              type="radio"
-              value="제한없음"
-              checked={state === "제한없음"}
-              onChange={onStateChange}
-            />
-            <S.Label>제한없음</S.Label>
-          </S.RadioBox>
-          <S.RadioBox>
-            <S.RaidoBotton
-              type="radio"
-              value="미노출"
-              checked={state === "미노출"}
-              onChange={onStateChange}
-            />
-            <S.Label>미노출</S.Label>
-          </S.RadioBox>
-          <S.RadioBox>
-            <S.RaidoBotton
-              type="radio"
-              value="노출 기간 설정"
-              checked={state === "노출 기간 설정"}
-              onChange={onStateChange}
-            />
-            <S.Label>노출 기간 설정</S.Label>
-          </S.RadioBox>
+          <RadioBoxSet
+            value="제한없음"
+            state={state}
+            onStateChange={onStateChange}
+          />
+          <RadioBoxSet
+            value="미노출"
+            state={state}
+            onStateChange={onStateChange}
+          />
+          <RadioBoxSet
+            value="노출 기간 설정"
+            state={state}
+            onStateChange={onStateChange}
+          />
           <S.CalendarBox>
             <Calendar
               date={exposurePeriod}
@@ -97,7 +104,11 @@ function ExposurePeriod(props) {
 }
 
 function SellPeriod(props) {
-  const { sellPeriod, setSellPeriod, setSell } = props;
+  const { setSell } = props;
+  const [sellPeriod, setSellPeriod] = useState({
+    startDate: new Date(),
+    endDate: new Date(),
+  });
   const [state, setState] = useState("제한없음");
 
   const onStateChange = (e) => {
@@ -117,33 +128,21 @@ function SellPeriod(props) {
       <S.Content>상품 판매 기한</S.Content>
       <S.SettingBox>
         <form>
-          <S.RadioBox>
-            <S.RaidoBotton
-              type="radio"
-              value="제한없음"
-              checked={state === "제한없음"}
-              onChange={onStateChange}
-            />
-            <S.Label>제한없음</S.Label>
-          </S.RadioBox>
-          <S.RadioBox>
-            <S.RaidoBotton
-              type="radio"
-              value="미노출"
-              checked={state === "미노출"}
-              onChange={onStateChange}
-            />
-            <S.Label>미노출</S.Label>
-          </S.RadioBox>
-          <S.RadioBox>
-            <S.RaidoBotton
-              type="radio"
-              value="노출 기간 설정"
-              checked={state === "노출 기간 설정"}
-              onChange={onStateChange}
-            />
-            <S.Label>노출 기간 설정</S.Label>
-          </S.RadioBox>
+          <RadioBoxSet
+            value="제한없음"
+            state={state}
+            onStateChange={onStateChange}
+          />
+          <RadioBoxSet
+            value="미노출"
+            state={state}
+            onStateChange={onStateChange}
+          />
+          <RadioBoxSet
+            value="노출 기간 설정"
+            state={state}
+            onStateChange={onStateChange}
+          />
           <S.CalendarBox>
             <Calendar
               date={sellPeriod}
@@ -164,15 +163,6 @@ function SellPeriod(props) {
 }
 
 function ExposureSellPeriod() {
-  const [exposurePeriod, setExposurePeriod] = useState({
-    startDate: new Date(),
-    endDate: new Date(),
-  });
-  const [sellPeriod, setSellPeriod] = useState({
-    startDate: new Date(),
-    endDate: new Date(),
-  });
-
   const [exposure, setExposure] = useState("제한없음");
   const [sell, setSell] = useState("제한없음");
 
@@ -185,17 +175,9 @@ function ExposureSellPeriod() {
         <S.TableRow>
           <S.Title colSpan="2">노출 및 판매기간설정</S.Title>
         </S.TableRow>
-        <ExposurePeriod
-          setExposure={setExposure}
-          exposurePeriod={exposurePeriod}
-          setExposurePeriod={setExposurePeriod}
-        />
+        <ExposurePeriod setExposure={setExposure} />
 
-        <SellPeriod
-          setSell={setSell}
-          sellPeriod={sellPeriod}
-          setSellPeriod={setSellPeriod}
-        />
+        <SellPeriod setSell={setSell} />
       </tbody>
     </S.Table>
   );
