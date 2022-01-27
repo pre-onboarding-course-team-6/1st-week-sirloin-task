@@ -7,23 +7,40 @@ import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSha
 import * as S from "./styled";
 
 function Calendar(props) {
-  const { date, setDate, dataType } = props;
+  const { date, setDate, dataType, state } = props;
   return (
     <S.CalendarMargin>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <DateTimePicker
-          inputFormat="yyyy.MM.dd hh:mm"
-          value={date[dataType]}
-          inputVariant="filled"
-          onChange={(newValue) => {
-            setDate({ ...date, [dataType]: newValue });
-          }}
-          mask="____.__.__ __:__"
-          renderInput={(params) => (
-            <TextField style={{ width: 200 }} size="small" {...params} />
-          )}
-          components={{ OpenPickerIcon: KeyboardArrowDownSharpIcon }}
-        />
+        {state === "노출 기간 설정" ? (
+          <DateTimePicker
+            inputFormat="yyyy.MM.dd hh:mm"
+            value={date[dataType]}
+            inputVariant="filled"
+            onChange={(newValue) => {
+              setDate({ ...date, [dataType]: newValue });
+            }}
+            mask="____.__.__ __:__"
+            renderInput={(params) => (
+              <TextField style={{ width: 200 }} size="small" {...params} />
+            )}
+            components={{ OpenPickerIcon: KeyboardArrowDownSharpIcon }}
+          />
+        ) : (
+          <DateTimePicker
+            disabled
+            inputFormat="yyyy.MM.dd hh:mm"
+            value={date[dataType]}
+            inputVariant="filled"
+            onChange={(newValue) => {
+              setDate({ ...date, [dataType]: newValue });
+            }}
+            mask="____.__.__ __:__"
+            renderInput={(params) => (
+              <TextField style={{ width: 200 }} size="small" {...params} />
+            )}
+            components={{ OpenPickerIcon: KeyboardArrowDownSharpIcon }}
+          />
+        )}
       </LocalizationProvider>
     </S.CalendarMargin>
   );
@@ -89,12 +106,14 @@ function ExposurePeriod(props) {
               date={exposurePeriod}
               setDate={setExposurePeriod}
               dataType="startDate"
+              state={state}
             />
             <S.Text>~</S.Text>
             <Calendar
               date={exposurePeriod}
               setDate={setExposurePeriod}
               dataType="endDate"
+              state={state}
             />
           </S.CalendarBox>
         </form>
@@ -176,7 +195,6 @@ function ExposureSellPeriod() {
           <S.Title colSpan="2">노출 및 판매기간설정</S.Title>
         </S.TableRow>
         <ExposurePeriod setExposure={setExposure} />
-
         <SellPeriod setSell={setSell} />
       </tbody>
     </S.Table>
