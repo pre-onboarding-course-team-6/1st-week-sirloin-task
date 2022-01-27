@@ -1,7 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import DateTimePicker from "@mui/lab/DateTimePicker";
+import { TextField } from "@mui/material";
+import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
 import * as S from "./styled";
 
+function Calendar(props) {
+  const { date, setDate } = props;
+  return (
+    <S.CalendarMargin>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <DateTimePicker
+          inputFormat="yyyy.MM.dd hh:mm"
+          value={date}
+          inputVariant="filled"
+          onChange={(newValue) => {
+            setDate(newValue);
+          }}
+          mask="____.__.__ __:__"
+          renderInput={(params) => (
+            <TextField style={{ width: 200 }} size="small" {...params} />
+          )}
+          components={{ OpenPickerIcon: KeyboardArrowDownSharpIcon }}
+        />
+      </LocalizationProvider>
+    </S.CalendarMargin>
+  );
+}
 function ExposurePeriod() {
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
+
   return (
     <S.Table>
       <tbody>
@@ -39,7 +69,11 @@ function ExposurePeriod() {
               />
               <S.Label>노출 기간 설정</S.Label>
             </S.RadioBox>
-            <div>달력</div>
+            <S.CalendarBox>
+              <Calendar date={startDate} setDate={setStartDate} />
+              <div>~</div>
+              <Calendar date={endDate} setDate={setEndDate} />
+            </S.CalendarBox>
           </S.SettingBox>
         </S.TableRow>
         <S.TableRow>

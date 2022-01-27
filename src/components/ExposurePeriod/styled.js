@@ -40,3 +40,14 @@ export const Table = styled.table`
   border-spacing: 0;
   border: 1px solid #cccccc;
 `;
+
+export const CalendarMargin = styled.div`
+  margin: 8px;
+`;
+
+export const CalendarBox = styled.div`
+  display: flex;
+  height: 56px;
+  line-height: 56px;
+  text-align: center;
+`;
