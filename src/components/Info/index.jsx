@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable consistent-return */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/button-has-type */
@@ -15,9 +16,11 @@ function Info() {
       return alert("하나 이상의 정보고시는 존재해야 합니다.");
     }
 
-    const result = [...inputFields];
-    result.splice(index, 1);
-    setInputFields(result);
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      const result = [...inputFields];
+      result.splice(index, 1);
+      setInputFields(result);
+    }
   };
 
   const handleAddFields = () => {
@@ -37,6 +40,17 @@ function Info() {
     setInputFields(values);
   };
 
+  const mergeToInputFields = (index, moreValues) => {
+    moreValues.forEach((obj) => {
+      const [moreKey, moreValue] = Object.values(obj);
+
+      const values = [...inputFields];
+      values[index][moreKey] = moreValue;
+
+      setInputFields(values);
+    });
+  };
+
   return (
     <>
       <form>
@@ -47,6 +61,7 @@ function Info() {
             index={index}
             handleChangeInput={handleChangeInput}
             handleDeleteFields={handleDeleteFields}
+            mergeToInputFields={mergeToInputFields}
           />
         ))}
       </form>

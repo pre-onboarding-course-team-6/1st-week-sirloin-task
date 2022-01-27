@@ -1,12 +1,28 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/button-has-type */
-import React from "react";
+import React, { useState } from "react";
+import { INFO_NOTI_MORE_TEMPLATE } from "../../../commons/constants/templates";
+import MoreInfoNoti from "./MoreInfoNoti";
 
 function InformationNotice({
   inputField,
   index,
   handleChangeInput,
   handleDeleteFields,
+  mergeToInputFields,
 }) {
+  const [moreFields, setMoreFields] = useState([
+    { ...INFO_NOTI_MORE_TEMPLATE },
+  ]);
+
+  const handleChangeMore = (moreIndex, event) => {
+    const values = [...moreFields];
+    values[moreIndex][event.target.name] = event.target.value;
+
+    setMoreFields(values);
+    mergeToInputFields(index, values);
+  };
+
   return (
     <div style={{ border: "2px solid red" }}>
       <div>
@@ -73,25 +89,15 @@ function InformationNotice({
         />
       </div>
 
-      {/* <div style={{ border: "2px solid blue" }}>
-        <input
-          type="text"
-          name="additionalKey"
-          id="additionalKey"
-          placeholder="항목 제목 자유 입력"
-          onChange={onChange}
-          value={additionalKey}
+      {moreFields.map((moreField, moreIndex) => (
+        <MoreInfoNoti
+          key={moreIndex}
+          moreField={moreField}
+          moreIndex={moreIndex}
+          handleChangeMore={handleChangeMore}
+          //   handleDeleteFields={handleDeleteFields}
         />
-        <input
-          type="text"
-          name="additionalContent"
-          id="additionalContent"
-          placeholder="내용을 입력해주세요."
-          onChange={onChange}
-          value={additionalContent}
-        />
-        <button>삭제</button>
-      </div> */}
+      ))}
 
       {/* <button onClick={onClick}>+ 항목 추가</button> */}
     </div>
