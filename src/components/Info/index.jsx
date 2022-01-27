@@ -44,6 +44,9 @@ function Info() {
     moreValues.forEach((obj) => {
       const [moreKey, moreValue] = Object.values(obj);
 
+      // 추가 항목의 key나 value가 공백이면 merge 무시
+      if (moreKey === "" || moreValue === "") return;
+
       const values = [...inputFields];
       values[index][moreKey] = moreValue;
 

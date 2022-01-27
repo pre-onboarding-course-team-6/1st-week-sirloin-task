@@ -15,12 +15,18 @@ function InformationNotice({
     { ...INFO_NOTI_MORE_TEMPLATE },
   ]);
 
+  const handleAddFields = (e) => {
+    e.preventDefault();
+
+    setMoreFields([...moreFields, { ...INFO_NOTI_MORE_TEMPLATE }]);
+  };
+
   const handleChangeMore = (moreIndex, event) => {
     const values = [...moreFields];
     values[moreIndex][event.target.name] = event.target.value;
 
     setMoreFields(values);
-    mergeToInputFields(index, values);
+    mergeToInputFields(index, values); // 정보 고시에 merge
   };
 
   return (
@@ -99,7 +105,7 @@ function InformationNotice({
         />
       ))}
 
-      {/* <button onClick={onClick}>+ 항목 추가</button> */}
+      <button onClick={handleAddFields}>+ 항목 추가</button>
     </div>
   );
 }
