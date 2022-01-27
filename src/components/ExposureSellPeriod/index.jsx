@@ -62,15 +62,7 @@ function RadioBoxSet(props) {
 }
 
 function ExposurePeriod(props) {
-  const now = new Date();
-  const today = new Date();
-  const nextWeek = new Date(today.setDate(today.getDate() + 7)).setHours(
-    0,
-    0,
-    0,
-    0
-  );
-  const { setExposure } = props;
+  const { setExposure, now, nextWeek } = props;
   const [exposurePeriod, setExposurePeriod] = useState({
     startDate: now,
     endDate: nextWeek,
@@ -140,15 +132,7 @@ function ExposurePeriod(props) {
 }
 
 function SellPeriod(props) {
-  const now = new Date();
-  const today = new Date();
-  const nextWeek = new Date(today.setDate(today.getDate() + 7)).setHours(
-    0,
-    0,
-    0,
-    0
-  );
-  const { setSell } = props;
+  const { setSell, now, nextWeek } = props;
   const [sellPeriod, setSellPeriod] = useState({
     startDate: now,
     endDate: nextWeek,
@@ -220,6 +204,14 @@ function SellPeriod(props) {
 function ExposureSellPeriod() {
   const [exposure, setExposure] = useState("제한없음");
   const [sell, setSell] = useState("제한없음");
+  const now = new Date();
+  const today = new Date();
+  const nextWeek = new Date(today.setDate(today.getDate() + 7)).setHours(
+    0,
+    0,
+    0,
+    0
+  );
 
   console.log("exposure", exposure);
   console.log("sell", sell);
@@ -230,8 +222,12 @@ function ExposureSellPeriod() {
         <tr>
           <S.Title colSpan="2">노출 및 판매기간설정</S.Title>
         </tr>
-        <ExposurePeriod setExposure={setExposure} />
-        <SellPeriod setSell={setSell} />
+        <ExposurePeriod
+          setExposure={setExposure}
+          now={now}
+          nextWeek={nextWeek}
+        />
+        <SellPeriod setSell={setSell} now={now} nextWeek={nextWeek} />
       </tbody>
     </S.Table>
   );
