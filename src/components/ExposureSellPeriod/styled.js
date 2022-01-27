@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+export const Table = styled.table`
+  border-spacing: 0;
+  border: 1px solid #cccccc;
+  margin: 24px;
+`;
+
 export const Title = styled.td`
   font-size: 18px;
   font-weight: 600;
@@ -24,21 +30,12 @@ export const SettingBox = styled.td`
   border-bottom: 1px solid #cccccc;
 `;
 
-export const TableRow = styled.tr``;
-
-export const RaidoBotton = styled.input`
-  type: radio;
-`;
-
-export const Label = styled.span``;
-
 export const RadioBox = styled.div`
   margin: 4px;
 `;
 
-export const Table = styled.table`
-  border-spacing: 0;
-  border: 1px solid #cccccc;
+export const RaidoBotton = styled.input`
+  type: radio;
 `;
 
 export const CalendarMargin = styled.div`

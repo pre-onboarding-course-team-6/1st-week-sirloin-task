@@ -56,7 +56,7 @@ function RadioBoxSet(props) {
         checked={state === value}
         onChange={onStateChange}
       />
-      <S.Label>{value}</S.Label>
+      <span>{value}</span>
     </S.RadioBox>
   );
 }
@@ -82,7 +82,7 @@ function ExposurePeriod(props) {
   }, [onStateChange]);
 
   return (
-    <S.TableRow>
+    <tr>
       <S.Content>상품 노출 기한</S.Content>
       <S.SettingBox>
         <form>
@@ -118,7 +118,7 @@ function ExposurePeriod(props) {
           </S.CalendarBox>
         </form>
       </S.SettingBox>
-    </S.TableRow>
+    </tr>
   );
 }
 
@@ -143,7 +143,7 @@ function SellPeriod(props) {
   }, [onStateChange]);
 
   return (
-    <S.TableRow>
+    <tr>
       <S.Content>상품 판매 기한</S.Content>
       <S.SettingBox>
         <form>
@@ -177,7 +177,7 @@ function SellPeriod(props) {
           </S.CalendarBox>
         </form>
       </S.SettingBox>
-    </S.TableRow>
+    </tr>
   );
 }
 
@@ -191,9 +191,9 @@ function ExposureSellPeriod() {
   return (
     <S.Table>
       <tbody>
-        <S.TableRow>
+        <tr>
           <S.Title colSpan="2">노출 및 판매기간설정</S.Title>
-        </S.TableRow>
+        </tr>
         <ExposurePeriod setExposure={setExposure} />
         <SellPeriod setSell={setSell} />
       </tbody>
