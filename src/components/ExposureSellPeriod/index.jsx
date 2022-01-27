@@ -11,7 +11,7 @@ function Calendar(props) {
   return (
     <S.CalendarMargin>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
-        {state === "노출 기간 설정" ? (
+        {state === "노출 기간 설정" || state === "판매 기간 설정" ? (
           <DateTimePicker
             inputFormat="yyyy.MM.dd hh:mm"
             value={date[dataType]}
@@ -62,10 +62,18 @@ function RadioBoxSet(props) {
 }
 
 function ExposurePeriod(props) {
+  const now = new Date();
+  const today = new Date();
+  const nextWeek = new Date(today.setDate(today.getDate() + 7)).setHours(
+    0,
+    0,
+    0,
+    0
+  );
   const { setExposure } = props;
   const [exposurePeriod, setExposurePeriod] = useState({
-    startDate: new Date(),
-    endDate: new Date(),
+    startDate: now,
+    endDate: nextWeek,
   });
   const [state, setState] = useState("제한없음");
 
@@ -80,6 +88,15 @@ function ExposurePeriod(props) {
       setExposure(state);
     }
   }, [onStateChange]);
+
+  if (exposurePeriod.startDate > exposurePeriod.endDate) {
+    setExposurePeriod({ ...exposurePeriod, endDate: exposurePeriod.startDate });
+  }
+
+  if (now > exposurePeriod.endDate) {
+    setExposurePeriod({ ...exposurePeriod, endDate: nextWeek });
+    setState("미노출");
+  }
 
   return (
     <tr>
@@ -123,10 +140,18 @@ function ExposurePeriod(props) {
 }
 
 function SellPeriod(props) {
+  const now = new Date();
+  const today = new Date();
+  const nextWeek = new Date(today.setDate(today.getDate() + 7)).setHours(
+    0,
+    0,
+    0,
+    0
+  );
   const { setSell } = props;
   const [sellPeriod, setSellPeriod] = useState({
-    startDate: new Date(),
-    endDate: new Date(),
+    startDate: now,
+    endDate: nextWeek,
   });
   const [state, setState] = useState("제한없음");
 
@@ -134,8 +159,17 @@ function SellPeriod(props) {
     setState(e.target.value);
   };
 
+  if (sellPeriod.startDate > sellPeriod.endDate) {
+    setSellPeriod({ ...sellPeriod, endDate: sellPeriod.startDate });
+  }
+
+  if (now > sellPeriod.endDate) {
+    setSellPeriod({ ...sellPeriod, endDate: nextWeek });
+    setState("미판매");
+  }
+
   useEffect(() => {
-    if (state === "노출 기간 설정") {
+    if (state === "판매 기간 설정") {
       setSell(sellPeriod);
     } else {
       setSell(state);
@@ -153,12 +187,12 @@ function SellPeriod(props) {
             onStateChange={onStateChange}
           />
           <RadioBoxSet
-            value="미노출"
+            value="미판매"
             state={state}
             onStateChange={onStateChange}
           />
           <RadioBoxSet
-            value="노출 기간 설정"
+            value="판매 기간 설정"
             state={state}
             onStateChange={onStateChange}
           />
@@ -167,12 +201,14 @@ function SellPeriod(props) {
               date={sellPeriod}
               setDate={setSellPeriod}
               dataType="startDate"
+              state={state}
             />
             <S.Text>~</S.Text>
             <Calendar
               date={sellPeriod}
               setDate={setSellPeriod}
               dataType="endDate"
+              state={state}
             />
           </S.CalendarBox>
         </form>
