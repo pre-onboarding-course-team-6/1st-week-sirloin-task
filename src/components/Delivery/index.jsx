@@ -8,6 +8,7 @@ import {
   Text,
 } from "commons/Styled/styled";
 import Calendar from "commons/utils/Calendar";
+import SimpleCalendar from "commons/utils/SimpleCalendar";
 import { todayMaker, nextWeekMaker } from "commons/utils/DateMaker";
 import Toggle from "commons/utils/Toggle";
 
@@ -17,10 +18,13 @@ function Delivery() {
   const [apoint, setApoint] = useState(false);
   const [visit, setVisit] = useState(false);
   const [preOrder, setPreOrder] = useState(false);
-
   const [orderPeriod, setOrderPeriod] = useState({
     startDate: today,
     endDate: nextWeek,
+  });
+  const [deliveryPeriod, setDeliveryPeriod] = useState({
+    dawn: nextWeek,
+    normal: nextWeek,
   });
 
   return (
@@ -46,7 +50,7 @@ function Delivery() {
           <SettingBox>
             <Toggle name="preOrder" toggle={preOrder} setToggle={setPreOrder} />
             <CalendarBox>
-              <Text>주문 시간</Text>
+              <span>주문 시간</span>
               <Calendar
                 date={orderPeriod}
                 setDate={setOrderPeriod}
@@ -59,6 +63,24 @@ function Delivery() {
                 date={orderPeriod}
                 setDate={setOrderPeriod}
                 dataType="endDate"
+                state={preOrder}
+                activeWord
+              />
+            </CalendarBox>
+            <CalendarBox>
+              <span>새벽 배송</span>
+              <SimpleCalendar
+                date={deliveryPeriod}
+                setDate={setDeliveryPeriod}
+                dataType="dawn"
+                state={preOrder}
+                activeWord
+              />
+              <span>일반 배송</span>
+              <SimpleCalendar
+                date={deliveryPeriod}
+                setDate={setDeliveryPeriod}
+                dataType="normal"
                 state={preOrder}
                 activeWord
               />
