@@ -1,12 +1,10 @@
 import React, { useState } from "react";
+import Toggle from "commons/utils/Toggle";
 import * as S from "./styled";
 
 function Benefit() {
   const [toggle, setToggle] = useState(true);
 
-  const handleToggle = () => {
-    setToggle(!toggle);
-  };
   return (
     <S.Table>
       <tbody>
@@ -16,16 +14,7 @@ function Benefit() {
         <tr>
           <S.Content>마일리지 적립</S.Content>
           <S.SettingBox>
-            <S.CheckBoxWrapper>
-              <S.CheckBox
-                id="mileage"
-                name="mileage"
-                type="checkbox"
-                checked={toggle}
-                onChange={handleToggle}
-              />
-              <S.CheckBoxLabel htmlFor="mileage" />
-            </S.CheckBoxWrapper>
+            <Toggle name="milege" toggle={toggle} setToggle={setToggle} />
           </S.SettingBox>
         </tr>
       </tbody>
