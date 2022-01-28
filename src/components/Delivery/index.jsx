@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Table,
   Title,
@@ -26,6 +26,18 @@ function Delivery() {
     dawn: nextWeek,
     normal: nextWeek,
   });
+
+  useEffect(() => {
+    if (preOrder) {
+      setApoint(false);
+      setVisit(false);
+    }
+  }, [preOrder]);
+  useEffect(() => {
+    if (apoint || visit) {
+      setPreOrder(false);
+    }
+  }, [apoint, visit]);
 
   return (
     <Table>
