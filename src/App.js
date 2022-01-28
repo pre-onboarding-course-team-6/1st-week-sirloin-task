@@ -1,7 +1,7 @@
 import React from "react";
 import Benefit from "components/Benefit";
 import Etc from "components/Etc";
-import ExposurePeriod from "components/ExposurePeriod";
+import ExposureSellPeriod from "components/ExposureSellPeriod";
 import Info from "components/Info";
 import IntroImage from "components/IntroImage";
 import Notify from "components/Notify";
@@ -13,7 +13,7 @@ function App() {
     <div>
       <Benefit />
       <Etc />
-      <ExposurePeriod />
+      <ExposureSellPeriod />
       <Info />
       <IntroImage />
       <Notify />
