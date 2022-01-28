@@ -1,7 +1,13 @@
 import React from "react";
+import ImageAttachment from "./element/ImageAttachment";
 
 function RecommendImage() {
-  return <div>RecommendImage</div>;
+  return (
+    <>
+      <ImageAttachment type="multiple">상품 소개 이미지</ImageAttachment>
+      <ImageAttachment type="multiple">구매자 추천 이미지</ImageAttachment>
+    </>
+  );
 }
 
 export default RecommendImage;
