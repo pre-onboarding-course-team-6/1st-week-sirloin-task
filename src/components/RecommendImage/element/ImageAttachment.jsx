@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/button-has-type */
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-function ImageAttachment({ children, type }) {
+function ImageAttachment({ children, type, name, handleChangeInput }) {
   const [imgFiles, setImgFiles] = useState([]);
 
   const imgInput = useRef(null);
@@ -42,6 +44,11 @@ function ImageAttachment({ children, type }) {
 
     setImgFiles(result);
   };
+
+  // 이미지 파일 추가되면 handleChangeInput 호출
+  useEffect(() => {
+    imgFiles.length && handleChangeInput(null, name, imgFiles);
+  }, [imgFiles]);
 
   return (
     <div>

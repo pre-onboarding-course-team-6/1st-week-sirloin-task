@@ -1,24 +1,28 @@
+/* eslint-disable no-unused-expressions */
 import React, { useEffect, useState } from "react";
 import ImageAttachment from "components/RecommendImage/element/ImageAttachment";
 import * as S from "./styled";
 
+const productCode = Math.floor(Math.random() * 10000000000)
+  .toString(16)
+  .toUpperCase();
+
 function Info() {
-  const [inputFields, setInputFields] = useState({});
-  const [productCode, setProductCode] = useState("");
+  const [inputFields, setInputFields] = useState({ productCode });
 
-  useEffect(() => {
-    const randNum = Math.floor(Math.random() * 10000000000);
-
-    setProductCode(randNum.toString(16).toUpperCase());
-  }, []);
-
-  const handleChangeInput = (event) => {
+  const handleChangeInput = (event, key, imgFiles = []) => {
     const values = { ...inputFields };
-    values[event.target.name] = event.target.value;
+    imgFiles.length === 0
+      ? (values[event.target.name] = event.target.value)
+      : (values[key] = imgFiles);
 
     setInputFields(values);
-    console.log(inputFields);
   };
+
+  // state 확인용 => App.js에서 최종 머지후 제거
+  useEffect(() => {
+    console.log(inputFields);
+  }, [inputFields]);
 
   return (
     <S.Table>
@@ -39,7 +43,7 @@ function Info() {
           </S.SplitLeftBox>
           <S.Content>상품코드</S.Content>
           <S.SplitRightBox>
-            <span>{productCode}</span>
+            <span>{inputFields.productCode}</span>
           </S.SplitRightBox>
         </tr>
         <tr>
@@ -57,13 +61,21 @@ function Info() {
         <tr>
           <S.Content>상품 썸네일</S.Content>
           <S.SettingBox colSpan="3">
-            <ImageAttachment type="single" />
+            <ImageAttachment
+              type="single"
+              name="productThumbnail"
+              handleChangeInput={handleChangeInput}
+            />
           </S.SettingBox>
         </tr>
         <tr>
           <S.Content>상품 대표 이미지</S.Content>
           <S.SettingBox colSpan="3">
-            <ImageAttachment type="multiple" />
+            <ImageAttachment
+              type="multiple"
+              name="productRepresent"
+              handleChangeInput={handleChangeInput}
+            />
           </S.SettingBox>
         </tr>
         <tr>
