@@ -1,24 +1,24 @@
 import React, { useState } from "react";
 import Toggle from "commons/utils/Toggle";
-import * as S from "./styled";
+import { Table, Title, Content, SettingBox } from "commons/Styled/styled";
 
 function Etc() {
   const [toggle, setToggle] = useState(false);
 
   return (
-    <S.Table>
+    <Table>
       <tbody>
         <tr>
-          <S.Title colSpan="2">기타 설정</S.Title>
+          <Title colSpan="2">기타 설정</Title>
         </tr>
         <tr>
-          <S.Content>감사카드 제공</S.Content>
-          <S.SettingBox>
+          <Content>감사카드 제공</Content>
+          <SettingBox>
             <Toggle name="card" toggle={toggle} setToggle={setToggle} />
-          </S.SettingBox>
+          </SettingBox>
         </tr>
       </tbody>
-    </S.Table>
+    </Table>
   );
 }
 

@@ -4,12 +4,19 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import DateTimePicker from "@mui/lab/DateTimePicker";
 import { TextField } from "@mui/material";
 import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
-import * as S from "./styled";
+import { Table, Title, Content, SettingBox } from "commons/Styled/styled";
+import {
+  RadioBox,
+  RaidoBotton,
+  CalendarMargin,
+  CalendarBox,
+  Text,
+} from "./styled";
 
 function Calendar(props) {
   const { date, setDate, dataType, state } = props;
   return (
-    <S.CalendarMargin>
+    <CalendarMargin>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         {state === "노출 기간 설정" || state === "판매 기간 설정" ? (
           <DateTimePicker
@@ -42,22 +49,22 @@ function Calendar(props) {
           />
         )}
       </LocalizationProvider>
-    </S.CalendarMargin>
+    </CalendarMargin>
   );
 }
 
 function RadioBoxSet(props) {
   const { value, state, onStateChange } = props;
   return (
-    <S.RadioBox>
-      <S.RaidoBotton
+    <RadioBox>
+      <RaidoBotton
         type="radio"
         value={value}
         checked={state === value}
         onChange={onStateChange}
       />
       <span>{value}</span>
-    </S.RadioBox>
+    </RadioBox>
   );
 }
 
@@ -92,8 +99,8 @@ function ExposurePeriod(props) {
 
   return (
     <tr>
-      <S.Content>상품 노출 기한</S.Content>
-      <S.SettingBox>
+      <Content>상품 노출 기한</Content>
+      <SettingBox>
         <form>
           <RadioBoxSet
             value="제한없음"
@@ -110,23 +117,23 @@ function ExposurePeriod(props) {
             state={state}
             onStateChange={onStateChange}
           />
-          <S.CalendarBox>
+          <CalendarBox>
             <Calendar
               date={exposurePeriod}
               setDate={setExposurePeriod}
               dataType="startDate"
               state={state}
             />
-            <S.Text>~</S.Text>
+            <Text>~</Text>
             <Calendar
               date={exposurePeriod}
               setDate={setExposurePeriod}
               dataType="endDate"
               state={state}
             />
-          </S.CalendarBox>
+          </CalendarBox>
         </form>
-      </S.SettingBox>
+      </SettingBox>
     </tr>
   );
 }
@@ -162,8 +169,8 @@ function SellPeriod(props) {
 
   return (
     <tr>
-      <S.Content>상품 판매 기한</S.Content>
-      <S.SettingBox>
+      <Content>상품 판매 기한</Content>
+      <SettingBox>
         <form>
           <RadioBoxSet
             value="제한없음"
@@ -180,23 +187,23 @@ function SellPeriod(props) {
             state={state}
             onStateChange={onStateChange}
           />
-          <S.CalendarBox>
+          <CalendarBox>
             <Calendar
               date={sellPeriod}
               setDate={setSellPeriod}
               dataType="startDate"
               state={state}
             />
-            <S.Text>~</S.Text>
+            <Text>~</Text>
             <Calendar
               date={sellPeriod}
               setDate={setSellPeriod}
               dataType="endDate"
               state={state}
             />
-          </S.CalendarBox>
+          </CalendarBox>
         </form>
-      </S.SettingBox>
+      </SettingBox>
     </tr>
   );
 }
@@ -217,10 +224,10 @@ function ExposureSellPeriod() {
   console.log("sell", sell);
 
   return (
-    <S.Table>
+    <Table>
       <tbody>
         <tr>
-          <S.Title colSpan="2">노출 및 판매기간설정</S.Title>
+          <Title colSpan="2">노출 및 판매기간설정</Title>
         </tr>
         <ExposurePeriod
           setExposure={setExposure}
@@ -229,7 +236,7 @@ function ExposureSellPeriod() {
         />
         <SellPeriod setSell={setSell} now={now} nextWeek={nextWeek} />
       </tbody>
-    </S.Table>
+    </Table>
   );
 }
 
