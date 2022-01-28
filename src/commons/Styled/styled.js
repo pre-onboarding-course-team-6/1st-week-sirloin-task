@@ -30,3 +30,7 @@ export const SettingBox = styled.td`
   min-width: 240px;
   border-bottom: 1px solid #cccccc;
 `;
+
+export const CalendarMargin = styled.div`
+  margin: 8px;
+`;

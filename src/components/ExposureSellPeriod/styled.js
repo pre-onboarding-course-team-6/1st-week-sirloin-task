@@ -8,10 +8,6 @@ export const RaidoBotton = styled.input`
   type: radio;
 `;
 
-export const CalendarMargin = styled.div`
-  margin: 8px;
-`;
-
 export const CalendarBox = styled.div`
   display: flex;
   height: 56px;

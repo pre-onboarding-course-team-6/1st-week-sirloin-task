@@ -1,57 +1,8 @@
 import React, { useState, useEffect } from "react";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import DateTimePicker from "@mui/lab/DateTimePicker";
-import { TextField } from "@mui/material";
-import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
-import { Table, Title, Content, SettingBox } from "commons/Styled/styled";
-import {
-  RadioBox,
-  RaidoBotton,
-  CalendarMargin,
-  CalendarBox,
-  Text,
-} from "./styled";
 
-function Calendar(props) {
-  const { date, setDate, dataType, state } = props;
-  return (
-    <CalendarMargin>
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        {state === "노출 기간 설정" || state === "판매 기간 설정" ? (
-          <DateTimePicker
-            inputFormat="yyyy.MM.dd hh:mm"
-            value={date[dataType]}
-            inputVariant="filled"
-            onChange={(newValue) => {
-              setDate({ ...date, [dataType]: newValue });
-            }}
-            mask="____.__.__ __:__"
-            renderInput={(params) => (
-              <TextField style={{ width: 200 }} size="small" {...params} />
-            )}
-            components={{ OpenPickerIcon: KeyboardArrowDownSharpIcon }}
-          />
-        ) : (
-          <DateTimePicker
-            disabled
-            inputFormat="yyyy.MM.dd hh:mm"
-            value={date[dataType]}
-            inputVariant="filled"
-            onChange={(newValue) => {
-              setDate({ ...date, [dataType]: newValue });
-            }}
-            mask="____.__.__ __:__"
-            renderInput={(params) => (
-              <TextField style={{ width: 200 }} size="small" {...params} />
-            )}
-            components={{ OpenPickerIcon: KeyboardArrowDownSharpIcon }}
-          />
-        )}
-      </LocalizationProvider>
-    </CalendarMargin>
-  );
-}
+import { Table, Title, Content, SettingBox } from "commons/Styled/styled";
+import Calendar from "commons/utils/Calendar";
+import { RadioBox, RaidoBotton, CalendarBox, Text } from "./styled";
 
 function RadioBoxSet(props) {
   const { value, state, onStateChange } = props;
@@ -123,6 +74,7 @@ function ExposurePeriod(props) {
               setDate={setExposurePeriod}
               dataType="startDate"
               state={state}
+              activeWord="노출 기간 설정"
             />
             <Text>~</Text>
             <Calendar
@@ -130,6 +82,7 @@ function ExposurePeriod(props) {
               setDate={setExposurePeriod}
               dataType="endDate"
               state={state}
+              activeWord="노출 기간 설정"
             />
           </CalendarBox>
         </form>
@@ -193,6 +146,7 @@ function SellPeriod(props) {
               setDate={setSellPeriod}
               dataType="startDate"
               state={state}
+              activeWord="판매 기간 설정"
             />
             <Text>~</Text>
             <Calendar
@@ -200,6 +154,7 @@ function SellPeriod(props) {
               setDate={setSellPeriod}
               dataType="endDate"
               state={state}
+              activeWord="판매 기간 설정"
             />
           </CalendarBox>
         </form>
