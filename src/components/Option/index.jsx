@@ -1,21 +1,56 @@
 import ImagePreview from "components/ImagePreview";
+import Options from "components/Options";
 import React, { useState } from "react";
 
 function Option() {
   const [optionFields, setOptionFields] = useState([]);
 
+  const handleAddOptions = (index) => {
+    const temp = optionFields.map((option, i) => {
+      if (i === index) {
+        const temp2 = option.optionInfo;
+        return {
+          ...option,
+          optionInfo: [
+            ...temp2,
+            {
+              name: "",
+              origin_price: "",
+              sale_price: "",
+              stocks: 0,
+              tax: "",
+            },
+          ],
+        };
+      }
+      return option;
+    });
+    setOptionFields(temp);
+  };
+
   const handleAddFileds = () => {
     setOptionFields([
       ...optionFields,
-      { id: optionFields.length, image: null, options: "" },
+      {
+        id: optionFields.length,
+        image: null,
+        optionInfo: [
+          {
+            name: "",
+            origin_price: "",
+            sale_price: "",
+            stocks: 0,
+            tax: "",
+          },
+        ],
+      },
     ]);
   };
   const handleRemoveFileds = (id) => {
-    console.log(id);
-    const options = [...optionFields];
-    if (options.length > 1) {
-      options.splice(id, 1);
-      setOptionFields(options);
+    const temp = [...optionFields];
+    if (temp.length > 1) {
+      temp.splice(id, 1);
+      setOptionFields(temp);
     } else {
       setOptionFields([]);
     }
@@ -57,6 +92,12 @@ function Option() {
             optionField={optionField}
             onChange={(e) => imagePreview(e, index)}
           />
+          {optionField.optionInfo.map((option, i) => (
+            <Options options={option} index={i} />
+          ))}
+          <button type="button" onClick={() => handleAddOptions(index)}>
+            + 옵션추가
+          </button>
         </div>
       ))}
       {optionFields.length > 0 || (
