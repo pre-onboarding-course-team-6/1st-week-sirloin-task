@@ -56,6 +56,15 @@ function Delivery() {
     }
   }, [orderPeriod.endDate, deliveryPeriod]);
 
+  useEffect(() => {
+    if (today > orderPeriod.endDate) {
+      setPreOrder(false);
+    }
+    if (orderPeriod.startDate > orderPeriod.endDate) {
+      setOrderPeriod({ ...orderPeriod, endDate: orderPeriod.startDate });
+    }
+  }, [orderPeriod.endDate]);
+
   return (
     <Table>
       <tbody>
