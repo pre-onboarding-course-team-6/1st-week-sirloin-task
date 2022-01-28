@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import React, { useEffect, useState } from "react";
-import ImageAttachment from "components/RecommendImage/element/ImageAttachment";
+import ImageAttachment from "../../commons/components/ImageAttachment";
 import * as S from "./styled";
 
 const productCode = Math.floor(Math.random() * 10000000000)

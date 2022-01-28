@@ -1,5 +1,5 @@
 import React from "react";
-import ImageAttachment from "./element/ImageAttachment";
+import ImageAttachment from "../../commons/components/ImageAttachment";
 
 function RecommendImage() {
   return (
