@@ -40,6 +40,17 @@ function Delivery() {
   }, [apoint, visit]);
 
   useEffect(() => {
+    if (today > orderPeriod.endDate) {
+      setPreOrder(false);
+    }
+    if (orderPeriod.startDate > orderPeriod.endDate) {
+      setOrderPeriod({ ...orderPeriod, endDate: orderPeriod.startDate });
+      setDeliveryPeriod({ ...deliveryPeriod, dawn: orderPeriod.startDate });
+      setDeliveryPeriod({ ...deliveryPeriod, dawn: orderPeriod.startDate });
+    }
+  }, [orderPeriod]);
+
+  useEffect(() => {
     if (deliveryPeriod.dawn < orderPeriod.endDate) {
       if (window.confirm("주문 시간 이후로 출고일을 지정해 주세요")) {
         setDeliveryPeriod({ ...deliveryPeriod, dawn: orderPeriod.endDate });
@@ -54,16 +65,7 @@ function Delivery() {
         setDeliveryPeriod({ ...deliveryPeriod, normal: orderPeriod.endDate });
       }
     }
-  }, [orderPeriod.endDate, deliveryPeriod]);
-
-  useEffect(() => {
-    if (today > orderPeriod.endDate) {
-      setPreOrder(false);
-    }
-    if (orderPeriod.startDate > orderPeriod.endDate) {
-      setOrderPeriod({ ...orderPeriod, endDate: orderPeriod.startDate });
-    }
-  }, [orderPeriod.endDate]);
+  }, [orderPeriod, deliveryPeriod]);
 
   return (
     <Table>

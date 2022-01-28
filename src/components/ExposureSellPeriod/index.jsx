@@ -47,14 +47,20 @@ function ExposurePeriod(props) {
     }
   }, [onStateChange]);
 
-  if (exposurePeriod.startDate > exposurePeriod.endDate) {
-    setExposurePeriod({ ...exposurePeriod, endDate: exposurePeriod.startDate });
-  }
+  useEffect(() => {
+    if (exposurePeriod.startDate > exposurePeriod.endDate) {
+      setExposurePeriod({
+        ...exposurePeriod,
+        endDate: exposurePeriod.startDate,
+      });
+      alert("끝은 시작보다 빠를 수 없습니다");
+    }
 
-  if (today > exposurePeriod.endDate) {
-    setExposurePeriod({ ...exposurePeriod, endDate: nextWeek });
-    setState("미노출");
-  }
+    if (today > exposurePeriod.endDate) {
+      setExposurePeriod({ ...exposurePeriod, endDate: nextWeek });
+      setState("미노출");
+    }
+  }, [exposurePeriod]);
 
   return (
     <tr>
@@ -111,14 +117,17 @@ function SellPeriod(props) {
     setState(e.target.value);
   };
 
-  if (sellPeriod.startDate > sellPeriod.endDate) {
-    setSellPeriod({ ...sellPeriod, endDate: sellPeriod.startDate });
-  }
+  useEffect(() => {
+    if (sellPeriod.startDate > sellPeriod.endDate) {
+      setSellPeriod({ ...sellPeriod, endDate: sellPeriod.startDate });
+      alert("끝은 시작보다 빠를 수 없습니다");
+    }
 
-  if (today > sellPeriod.endDate) {
-    setSellPeriod({ ...sellPeriod, endDate: nextWeek });
-    setState("미판매");
-  }
+    if (today > sellPeriod.endDate) {
+      setSellPeriod({ ...sellPeriod, endDate: nextWeek });
+      setState("미판매");
+    }
+  }, [sellPeriod]);
 
   useEffect(() => {
     if (state === "판매 기간 설정") {
