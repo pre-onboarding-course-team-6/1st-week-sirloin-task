@@ -12,15 +12,15 @@ import Delivery from "components/Delivery";
 function App() {
   return (
     <div>
-      <Benefit />
-      <Etc />
       <ExposureSellPeriod />
       <Info />
-      <IntroImage />
-      <Notify />
       <Option />
+      <IntroImage />
       <RecommendImage />
+      <Notify />
       <Delivery />
+      <Benefit />
+      <Etc />
     </div>
   );
 }
