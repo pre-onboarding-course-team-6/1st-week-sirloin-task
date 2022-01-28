@@ -10,10 +10,11 @@ export const Title = styled.td`
   font-size: 18px;
   font-weight: 600;
   padding: 12px;
+  width: 120px;
 `;
 
 export const Content = styled.td`
-  min-width: 120px;
+  width: 120px;
   font-size: 16px;
   font-weight: 600;
   background-color: #eeeeee;
