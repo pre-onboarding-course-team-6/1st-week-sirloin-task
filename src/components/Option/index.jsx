@@ -1,6 +1,59 @@
-import ImagePreview from "components/ImagePreview";
-import Options from "components/Options";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import * as S from "./styled";
+
+function Options(props) {
+  const { id, handleRemoveOptions, parentId } = props;
+  return (
+    <S.OptionBox>
+      <S.DelBtnBox>
+        <S.DelBtn
+          type="button"
+          value={parentId}
+          id={id}
+          onClick={handleRemoveOptions}
+        >
+          삭제
+        </S.DelBtn>
+      </S.DelBtnBox>
+      <S.LongInput type="text" placeholder="옵션명을 입력해주세요(필수)" />
+      <input type="text" placeholder="상품 정상가(필수)" />
+      <input type="text" placeholder="상품 판매가" />
+      <input type="text" placeholder="재고(필수)" />
+      <select name="taxes" id="taxes">
+        <option value="notax">비과세</option>
+        <option value="tax">과세</option>
+      </select>
+    </S.OptionBox>
+  );
+}
+
+function ImagePreview({ optionField, onChange }) {
+  const fileInputRef = useRef();
+
+  const uploadImage = (e) => {
+    e.preventDefault();
+    fileInputRef.current.click();
+  };
+
+  return (
+    <form>
+      {optionField.image ? (
+        <S.Image src={optionField.image} alt="preveiw" />
+      ) : (
+        <button type="button" onClick={(e) => uploadImage(e)}>
+          + 이미지 첨부
+        </button>
+      )}
+      <input
+        accept="image/*"
+        ref={fileInputRef}
+        style={{ display: "none" }}
+        type="file"
+        onChange={onChange}
+      />
+    </form>
+  );
+}
 
 function Option() {
   const [optionFields, setOptionFields] = useState([]);
@@ -86,7 +139,7 @@ function Option() {
     }
   };
   return (
-    <div>
+    <S.MainBox>
       <div>
         <h1>상품옵션</h1>
         <button type="button" onClick={handleAddFileds}>
@@ -94,10 +147,7 @@ function Option() {
         </button>
       </div>
       {optionFields.map((optionField, index) => (
-        <div
-          key={optionField.id}
-          style={{ width: "300px", backgroundColor: "grey" }}
-        >
+        <S.ImageBox key={optionField.id}>
           <button type="button" onClick={() => handleRemoveFileds(index)}>
             삭제
           </button>
@@ -116,12 +166,12 @@ function Option() {
           <button type="button" onClick={() => handleAddOptions(index)}>
             + 옵션추가
           </button>
-        </div>
+        </S.ImageBox>
       ))}
       {optionFields.length > 0 || (
         <div>옵션세트를 추가하여 옵션을 구성해주세요</div>
       )}
-    </div>
+    </S.MainBox>
   );
 }
 
