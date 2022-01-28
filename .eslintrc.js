@@ -14,6 +14,7 @@ module.exports = {
     ecmaVersion: 2018,
   },
   rules: {
+    "no-alert": "off",
     "import/no-named-as-default": 0,
     "import/no-named-as-default-member": 0,
     "no-param-reassign": [

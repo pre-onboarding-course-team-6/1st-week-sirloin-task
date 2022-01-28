@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from "react";
 
-import { Table, Title, Content, SettingBox } from "commons/Styled/styled";
+import {
+  Table,
+  Title,
+  Content,
+  SettingBox,
+  CalendarBox,
+  Text,
+} from "commons/Styled/styled";
 import Calendar from "commons/utils/Calendar";
-import { RadioBox, RaidoBotton, CalendarBox, Text } from "./styled";
+import { todayMaker, nextWeekMaker } from "commons/utils/DateMaker";
+import { RadioBox, RaidoBotton } from "./styled";
 
 function RadioBoxSet(props) {
   const { value, state, onStateChange } = props;
@@ -20,9 +28,9 @@ function RadioBoxSet(props) {
 }
 
 function ExposurePeriod(props) {
-  const { setExposure, now, nextWeek } = props;
+  const { setExposure, today, nextWeek } = props;
   const [exposurePeriod, setExposurePeriod] = useState({
-    startDate: now,
+    startDate: today,
     endDate: nextWeek,
   });
   const [state, setState] = useState("제한없음");
@@ -43,7 +51,7 @@ function ExposurePeriod(props) {
     setExposurePeriod({ ...exposurePeriod, endDate: exposurePeriod.startDate });
   }
 
-  if (now > exposurePeriod.endDate) {
+  if (today > exposurePeriod.endDate) {
     setExposurePeriod({ ...exposurePeriod, endDate: nextWeek });
     setState("미노출");
   }
@@ -92,9 +100,9 @@ function ExposurePeriod(props) {
 }
 
 function SellPeriod(props) {
-  const { setSell, now, nextWeek } = props;
+  const { setSell, today, nextWeek } = props;
   const [sellPeriod, setSellPeriod] = useState({
-    startDate: now,
+    startDate: today,
     endDate: nextWeek,
   });
   const [state, setState] = useState("제한없음");
@@ -107,7 +115,7 @@ function SellPeriod(props) {
     setSellPeriod({ ...sellPeriod, endDate: sellPeriod.startDate });
   }
 
-  if (now > sellPeriod.endDate) {
+  if (today > sellPeriod.endDate) {
     setSellPeriod({ ...sellPeriod, endDate: nextWeek });
     setState("미판매");
   }
@@ -166,14 +174,8 @@ function SellPeriod(props) {
 function ExposureSellPeriod() {
   const [exposure, setExposure] = useState("제한없음");
   const [sell, setSell] = useState("제한없음");
-  const now = new Date();
-  const today = new Date();
-  const nextWeek = new Date(today.setDate(today.getDate() + 7)).setHours(
-    0,
-    0,
-    0,
-    0
-  );
+  const today = todayMaker;
+  const nextWeek = nextWeekMaker;
 
   console.log("exposure", exposure);
   console.log("sell", sell);
@@ -186,10 +188,10 @@ function ExposureSellPeriod() {
         </tr>
         <ExposurePeriod
           setExposure={setExposure}
-          now={now}
+          today={today}
           nextWeek={nextWeek}
         />
-        <SellPeriod setSell={setSell} now={now} nextWeek={nextWeek} />
+        <SellPeriod setSell={setSell} today={today} nextWeek={nextWeek} />
       </tbody>
     </Table>
   );

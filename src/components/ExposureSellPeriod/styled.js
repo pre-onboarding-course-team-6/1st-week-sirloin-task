@@ -14,7 +14,3 @@ export const CalendarBox = styled.div`
   line-height: 56px;
   text-align: center;
 `;
-
-export const Text = styled.div`
-  font-size: 18px;
-`;
