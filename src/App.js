@@ -7,6 +7,7 @@ import IntroImage from "components/IntroImage";
 import Notify from "components/Notify";
 import Option from "components/Option";
 import RecommendImage from "components/RecommendImage";
+import Delivery from "components/Delivery";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Notify />
       <Option />
       <RecommendImage />
+      <Delivery />
     </div>
   );
 }
