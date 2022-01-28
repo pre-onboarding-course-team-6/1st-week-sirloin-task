@@ -30,7 +30,14 @@ function Info() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(inputFields);
+    // 객체 -> 배열 -> 필터링 -> 객체
+    const result = inputFields.map((obj) => {
+      const parsedArr = Object.entries(obj).filter((arr) => arr[1] !== "");
+
+      return Object.fromEntries(parsedArr);
+    });
+
+    console.log(result);
   };
 
   const handleChangeInput = (index, event) => {
