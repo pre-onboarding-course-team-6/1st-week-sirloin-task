@@ -23,7 +23,6 @@ function Delivery() {
     endDate: nextWeek,
   });
 
-  console.log(orderPeriod);
   return (
     <Table>
       <tbody>

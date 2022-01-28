@@ -176,7 +176,6 @@ function ExposureSellPeriod() {
   const [sell, setSell] = useState("제한없음");
   const today = todayMaker;
   const nextWeek = nextWeekMaker;
-  console.log(today, nextWeek);
 
   console.log("exposure", exposure);
   console.log("sell", sell);
