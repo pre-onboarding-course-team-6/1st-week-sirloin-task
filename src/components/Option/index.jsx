@@ -5,7 +5,7 @@ function Options(props) {
   const { id, handleRemoveOptions, parentId } = props;
   return (
     <S.OptionBox>
-      <S.DelBtnBox>
+      <S.BtnRightBox>
         <S.DelBtn
           type="button"
           value={parentId}
@@ -14,15 +14,19 @@ function Options(props) {
         >
           삭제
         </S.DelBtn>
-      </S.DelBtnBox>
-      <S.LongInput type="text" placeholder="옵션명을 입력해주세요(필수)" />
-      <input type="text" placeholder="상품 정상가(필수)" />
-      <input type="text" placeholder="상품 판매가" />
-      <input type="text" placeholder="재고(필수)" />
-      <select name="taxes" id="taxes">
-        <option value="notax">비과세</option>
-        <option value="tax">과세</option>
-      </select>
+      </S.BtnRightBox>
+      <div>
+        <S.LongInput type="text" placeholder="옵션명을 입력해주세요(필수)" />
+      </div>
+      <div>
+        <input type="text" placeholder="상품 정상가(필수)" />
+        <input type="text" placeholder="상품 판매가" />
+        <input type="text" placeholder="재고(필수)" />
+        <select name="taxes" id="taxes">
+          <option value="notax">비과세</option>
+          <option value="tax">과세</option>
+        </select>
+      </div>
     </S.OptionBox>
   );
 }
@@ -36,13 +40,13 @@ function ImagePreview({ optionField, onChange }) {
   };
 
   return (
-    <form>
+    <S.Form>
       {optionField.image ? (
         <S.Image src={optionField.image} alt="preveiw" />
       ) : (
-        <button type="button" onClick={(e) => uploadImage(e)}>
+        <S.ImageAddBtn type="button" onClick={(e) => uploadImage(e)}>
           + 이미지 첨부
-        </button>
+        </S.ImageAddBtn>
       )}
       <input
         accept="image/*"
@@ -51,12 +55,13 @@ function ImagePreview({ optionField, onChange }) {
         type="file"
         onChange={onChange}
       />
-    </form>
+    </S.Form>
   );
 }
 
 function Option() {
   const [optionFields, setOptionFields] = useState([]);
+
   const handleAddOptions = (index) => {
     const temp = optionFields.map((option, i) => {
       if (i === index) {
@@ -140,37 +145,45 @@ function Option() {
   };
   return (
     <S.MainBox>
-      <div>
-        <h1>상품옵션</h1>
-        <button type="button" onClick={handleAddFileds}>
-          옵션세트추가
-        </button>
-      </div>
-      {optionFields.map((optionField, index) => (
-        <S.ImageBox key={optionField.id}>
-          <button type="button" onClick={() => handleRemoveFileds(index)}>
-            삭제
-          </button>
-          <ImagePreview
-            optionField={optionField}
-            onChange={(e) => imagePreview(e, index)}
-          />
-          {optionField.optionInfo.map((option, i) => (
-            <Options
-              options={option}
-              id={i}
-              parentId={index}
-              handleRemoveOptions={handleRemoveOptions}
-            />
-          ))}
-          <button type="button" onClick={() => handleAddOptions(index)}>
-            + 옵션추가
-          </button>
-        </S.ImageBox>
-      ))}
-      {optionFields.length > 0 || (
-        <div>옵션세트를 추가하여 옵션을 구성해주세요</div>
-      )}
+      <S.FlexBox>
+        <S.Title>상품옵션*</S.Title>
+        <S.PurpleBtn type="button" onClick={handleAddFileds}>
+          +옵션세트추가
+        </S.PurpleBtn>
+      </S.FlexBox>
+      <S.GreyBox>
+        {optionFields.map((optionField, index) => (
+          <>
+            <S.BtnRightBox>
+              <S.DelBtn type="button" onClick={() => handleRemoveFileds(index)}>
+                삭제
+              </S.DelBtn>
+            </S.BtnRightBox>
+            <S.WhiteBox>
+              <S.ImageBox key={optionField.id}>
+                <ImagePreview
+                  optionField={optionField}
+                  onChange={(e) => imagePreview(e, index)}
+                />
+              </S.ImageBox>
+              {optionField.optionInfo.map((option, i) => (
+                <Options
+                  options={option}
+                  id={i}
+                  parentId={index}
+                  handleRemoveOptions={handleRemoveOptions}
+                />
+              ))}
+              <button type="button" onClick={() => handleAddOptions(index)}>
+                + 옵션추가
+              </button>
+            </S.WhiteBox>
+          </>
+        ))}
+        {optionFields.length > 0 || (
+          <div>옵션세트를 추가하여 옵션을 구성해주세요</div>
+        )}
+      </S.GreyBox>
     </S.MainBox>
   );
 }

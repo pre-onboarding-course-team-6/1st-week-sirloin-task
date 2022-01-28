@@ -1,22 +1,50 @@
 import styled from "styled-components";
 
-export const MainBox = styled.div``;
+export const MainBox = styled.div`
+  margin: 24px;
+  border: 1px solid #cccccc;
+  width: 680px;
+`;
+
+export const FlexBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const Title = styled.div`
+  font-size: 18px;
+  font-weight: 600;
+  padding: 8px 16px;
+`;
+
+export const OptionsetsBox = styled.div`
+  margin: 8px;
+`;
+
+export const GreyBox = styled.div`
+  background-color: #eeeeee;
+  padding: 8px;
+`;
+
+export const WhiteBox = styled.div`
+  background-color: #ffffff;
+  padding: 8px;
+`;
 
 export const ImageBox = styled.div`
-  width: 720px;
-  height: 240px;
-  background-color: #cccccc;
+  background-color: #eeeeee;
+  min-height: 180px;
 `;
 
 export const OptionBox = styled.div`
-  margin: 4px;
+  padding: 4px;
+  margin-top: 12px;
   background-color: #ffffff;
   border: 1px solid #cccccc;
   border-radius: 8px;
-  width: 540px;
 `;
 
-export const DelBtnBox = styled.div`
+export const BtnRightBox = styled.div`
   text-align: right;
 `;
 
@@ -29,16 +57,39 @@ export const DelBtn = styled.button`
   margin: 4px 12px;
 `;
 
-export const LongInput = styled.input`
-  padding: 12px;
+export const PurpleBtn = styled.button`
+  background-color: #ffffff;
+  border: 1px solid #660099;
   font-size: 16px;
-  width: 100%;
+  font-weight: bold;
+  padding: 12px 16px;
+  border-radius: 8px;
+  color: #660099;
+`;
+
+export const ImageAddBtn = styled.button`
+  background-color: #ffffff;
+  border: 1px solid #660099;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px 48px;
+  margin-top: 64px;
+  border-radius: 8px;
+  color: #660099;
+`;
+
+export const LongInput = styled.input`
+  padding: 8px;
+  font-size: 16px;
+  width: 600px;
+  margin: 4px;
 `;
 
 export const Image = styled.img`
-  width: 240px;
-  height: 240px;
-  margin: 12px;
+  height: 360px;
+  object-fit: cover;
 `;
 
-export const Btn = styled.button``;
+export const Form = styled.form`
+  text-align: center;
+`;
