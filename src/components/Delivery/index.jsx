@@ -39,6 +39,23 @@ function Delivery() {
     }
   }, [apoint, visit]);
 
+  useEffect(() => {
+    if (deliveryPeriod.dawn < orderPeriod.endDate) {
+      if (window.confirm("주문 시간 이후로 출고일을 지정해 주세요")) {
+        setDeliveryPeriod({ ...deliveryPeriod, dawn: orderPeriod.endDate });
+      } else {
+        setDeliveryPeriod({ ...deliveryPeriod, dawn: orderPeriod.endDate });
+      }
+    }
+    if (deliveryPeriod.normal < orderPeriod.endDate) {
+      if (window.confirm("주문 시간 이후로 출고일을 지정해 주세요")) {
+        setDeliveryPeriod({ ...deliveryPeriod, normal: orderPeriod.endDate });
+      } else {
+        setDeliveryPeriod({ ...deliveryPeriod, normal: orderPeriod.endDate });
+      }
+    }
+  }, [orderPeriod.endDate, deliveryPeriod]);
+
   return (
     <Table>
       <tbody>
