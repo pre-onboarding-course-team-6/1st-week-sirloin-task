@@ -26,27 +26,19 @@ function Option() {
     });
     setOptionFields(temp);
   };
-  /*eslint-disable*/ 
+
   const handleRemoveOptions = (e) => {
     const parentId = Number(e.target.value);
     const childId = Number(e.target.id);
-    let temp = [...optionFields[parentId].optionInfo];
-    if(temp.length>1){
-      temp.splice(childId,1);
-    } else {
-      temp = [];
-    }
-    const temp2 = [];
-    optionFields.map((option,i) => {
-      if(i !== parentId){
-        temp2.push(option);
-      } else {
-        const temp3 = {...option, optionInfo: temp}
-        console.log(temp3);
-        temp2.push(temp3);
+    const newOptionInfo = [...optionFields[parentId].optionInfo];
+    newOptionInfo.splice(childId, 1);
+    const newOptionSet = optionFields.map((option, i) => {
+      if (i !== parentId) {
+        return option;
       }
-    })
-    setOptionFields(temp2);
+      return { ...option, optionInfo: newOptionInfo };
+    });
+    setOptionFields(newOptionSet);
   };
 
   const handleAddFileds = () => {
@@ -114,12 +106,12 @@ function Option() {
             onChange={(e) => imagePreview(e, index)}
           />
           {optionField.optionInfo.map((option, i) => (
-              <Options
-                options={option}
-                id={i}
-                parentId={index}
-                handleRemoveOptions={handleRemoveOptions}
-              />
+            <Options
+              options={option}
+              id={i}
+              parentId={index}
+              handleRemoveOptions={handleRemoveOptions}
+            />
           ))}
           <button type="button" onClick={() => handleAddOptions(index)}>
             + 옵션추가
