@@ -4,7 +4,6 @@ import React, { useState } from "react";
 
 function Option() {
   const [optionFields, setOptionFields] = useState([]);
-
   const handleAddOptions = (index) => {
     const temp = optionFields.map((option, i) => {
       if (i === index) {
@@ -26,6 +25,28 @@ function Option() {
       return option;
     });
     setOptionFields(temp);
+  };
+  /*eslint-disable*/ 
+  const handleRemoveOptions = (e) => {
+    const parentId = Number(e.target.value);
+    const childId = Number(e.target.id);
+    let temp = [...optionFields[parentId].optionInfo];
+    if(temp.length>1){
+      temp.splice(childId,1);
+    } else {
+      temp = [];
+    }
+    const temp2 = [];
+    optionFields.map((option,i) => {
+      if(i !== parentId){
+        temp2.push(option);
+      } else {
+        const temp3 = {...option, optionInfo: temp}
+        console.log(temp3);
+        temp2.push(temp3);
+      }
+    })
+    setOptionFields(temp2);
   };
 
   const handleAddFileds = () => {
@@ -55,6 +76,7 @@ function Option() {
       setOptionFields([]);
     }
   };
+
   const imagePreview = (e, index) => {
     const file = e.target.files[0];
     if (file) {
@@ -66,7 +88,6 @@ function Option() {
           }
           return option;
         });
-        console.log(index);
         setOptionFields(temp);
       };
       reader.readAsDataURL(file);
@@ -93,7 +114,12 @@ function Option() {
             onChange={(e) => imagePreview(e, index)}
           />
           {optionField.optionInfo.map((option, i) => (
-            <Options options={option} index={i} />
+              <Options
+                options={option}
+                id={i}
+                parentId={index}
+                handleRemoveOptions={handleRemoveOptions}
+              />
           ))}
           <button type="button" onClick={() => handleAddOptions(index)}>
             + 옵션추가
