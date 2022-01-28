@@ -64,7 +64,7 @@ export const PurpleBtn = styled.button`
   font-weight: bold;
   padding: 12px 16px;
   border-radius: 8px;
-  color: #660099;
+  color: #000000;
 `;
 
 export const ImageAddBtn = styled.button`
@@ -75,13 +75,20 @@ export const ImageAddBtn = styled.button`
   padding: 12px 48px;
   margin-top: 64px;
   border-radius: 8px;
-  color: #660099;
+  color: #000000;
 `;
 
 export const LongInput = styled.input`
   padding: 8px;
   font-size: 16px;
   width: 600px;
+  margin: 4px;
+`;
+
+export const ShortInput = styled.input`
+  padding: 6px;
+  font-size: 12px;
+  width: 100px;
   margin: 4px;
 `;
 
@@ -92,4 +99,30 @@ export const Image = styled.img`
 
 export const Form = styled.form`
   text-align: center;
+`;
+
+export const SelectBox = styled.select`
+  padding: 6px;
+  font-size: 12px;
+  width: 72px;
+  margin: 4px;
+`;
+
+export const InputBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 4px;
+  align-items: center;
+`;
+
+export const OptionAddBtn = styled.button`
+  background-color: #ffffff;
+  border: 1px solid #660099;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px 48px;
+  width: 100%;
+  margin: 16px 0;
+  border-radius: 8px;
+  color: #000000;
 `;

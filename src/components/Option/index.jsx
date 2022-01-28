@@ -3,6 +3,7 @@ import * as S from "./styled";
 
 function Options(props) {
   const { id, handleRemoveOptions, parentId } = props;
+  const string = "{{할인율}}%";
   return (
     <S.OptionBox>
       <S.BtnRightBox>
@@ -18,15 +19,19 @@ function Options(props) {
       <div>
         <S.LongInput type="text" placeholder="옵션명을 입력해주세요(필수)" />
       </div>
-      <div>
-        <input type="text" placeholder="상품 정상가(필수)" />
-        <input type="text" placeholder="상품 판매가" />
-        <input type="text" placeholder="재고(필수)" />
-        <select name="taxes" id="taxes">
+      <S.InputBox>
+        <S.ShortInput type="text" placeholder="상품 정상가(필수)" />
+        <span>원</span>
+        <span> {string}</span>
+        <S.ShortInput type="text" placeholder="상품 판매가" />
+        <span>원</span>
+        <S.ShortInput type="text" placeholder="재고(필수)" />
+        <span>개</span>
+        <S.SelectBox name="taxes" id="taxes">
           <option value="notax">비과세</option>
           <option value="tax">과세</option>
-        </select>
-      </div>
+        </S.SelectBox>
+      </S.InputBox>
     </S.OptionBox>
   );
 }
@@ -174,9 +179,12 @@ function Option() {
                   handleRemoveOptions={handleRemoveOptions}
                 />
               ))}
-              <button type="button" onClick={() => handleAddOptions(index)}>
-                + 옵션추가
-              </button>
+              <S.OptionAddBtn
+                type="button"
+                onClick={() => handleAddOptions(index)}
+              >
+                +옵션 추가
+              </S.OptionAddBtn>
             </S.WhiteBox>
           </>
         ))}
