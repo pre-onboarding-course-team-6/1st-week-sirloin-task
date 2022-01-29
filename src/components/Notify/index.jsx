@@ -2,13 +2,14 @@
 /* eslint-disable consistent-return */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/button-has-type */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Table, FullBtn } from "commons/Styled/styled";
 import InformationNotice from "./elements/InformationNotice";
 import { INFO_NOTI_TEMPLATE } from "../../commons/constants/templates";
 
-function Info() {
+function Info({ data, setData }) {
   const [inputFields, setInputFields] = useState([{ ...INFO_NOTI_TEMPLATE }]);
+
   const handleDeleteFields = (index, event) => {
     event.preventDefault();
 
@@ -47,6 +48,16 @@ function Info() {
       setInputFields(values);
     });
   };
+
+  useEffect(() => {
+    setData({
+      ...data,
+      informationNotify: {
+        ...data.informationNotify,
+        ...inputFields,
+      },
+    });
+  }, [inputFields]);
 
   return (
     <Table>
