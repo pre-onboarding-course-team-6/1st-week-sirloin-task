@@ -29,7 +29,9 @@ function Info() {
   };
 
   const handleDeleteFilterTag = (event, index) => {
-    console.log(event, index);
+    const result = selectedTags.filter((_, i) => i !== index);
+
+    setSelectedTags(result);
   };
 
   // state 확인용 => App.js에서 최종 머지후 제거
@@ -52,7 +54,6 @@ function Info() {
               id="filterSearch"
               placeholder="상품명을 입력해 주세요."
               onFocus={handleFocus}
-              // onBlur={handleFocus}
               onChange={handleChangeInput}
             />
             {isFocusOn && (

@@ -8,6 +8,8 @@ function FilterSearchResult({ selectedTags, setSelectedTags }) {
   const handleAddFilterTag = (event, string) => {
     event.preventDefault();
 
+    if (selectedTags.includes(string)) return;
+
     setSelectedTags([...selectedTags, string]);
   };
 
