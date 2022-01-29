@@ -1,7 +1,9 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-unused-expressions */
 import React, { useEffect, useState } from "react";
+import FILTER_TAG_LIST from "commons/constants/filterTagList";
 import ImageAttachment from "../../commons/components/ImageAttachment";
 import FilterSearchResult from "./elements/FilterSearchResult";
 import * as S from "./styled";
@@ -13,6 +15,7 @@ const productCode = Math.floor(Math.random() * 10000000000)
 function Info() {
   const [inputFields, setInputFields] = useState({ productCode });
   const [isFocusOn, setIsFocusOn] = useState(false);
+  const [savedTagList, setSavedTagList] = useState([...FILTER_TAG_LIST]);
   const [selectedTags, setSelectedTags] = useState([]);
 
   const handleChangeInput = (event, key, imgFiles = []) => {
@@ -34,10 +37,24 @@ function Info() {
     setSelectedTags(result);
   };
 
+  const handleSearchChange = (event) => {
+    const searchWord = event.target.value;
+
+    if (searchWord === "") return;
+
+    // indexOf가 -1이면 일치하는 단어가 없다
+    const result = FILTER_TAG_LIST.filter(
+      (string) => string.indexOf(searchWord) !== -1
+    );
+
+    setSavedTagList(result);
+  };
+
   // state 확인용 => App.js에서 최종 머지후 제거
   useEffect(() => {
+    console.log(`savedTagList : ${savedTagList}`);
     console.log(`selectedTags : ${selectedTags}`);
-  }, [selectedTags]);
+  }, [savedTagList, selectedTags]);
 
   return (
     <S.Table>
@@ -54,12 +71,14 @@ function Info() {
               id="filterSearch"
               placeholder="상품명을 입력해 주세요."
               onFocus={handleFocus}
-              onChange={handleChangeInput}
+              onChange={handleSearchChange}
             />
             {isFocusOn && (
               <FilterSearchResult
+                savedTagList={savedTagList}
                 selectedTags={selectedTags}
                 setSelectedTags={setSelectedTags}
+                setIsFocusOn={setIsFocusOn}
               />
             )}
             {selectedTags.length > 0 && (
