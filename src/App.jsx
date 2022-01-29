@@ -13,7 +13,17 @@ import * as S from "styled";
 function App() {
   const [data, setData] = useState({
     exposureOrSalePeriod: { exposure: "", sell: "" },
-    basicProductInformation: {},
+    basicProductInformation: {
+      savedTagList: [],
+      selectedTags: [],
+      inputFields: {
+        productCode: "",
+        productComposition: "",
+        productName: "",
+        productRepresent: [],
+        productThumbnail: [],
+      },
+    },
     productOption: {},
     productIntroImage: [],
     recommendationImage: [],
@@ -36,14 +46,14 @@ function App() {
         </button>
       </S.Header>
       <ExposureSellPeriod data={data} setData={setData} />
-      <Info />
-      <Option />
-      <IntroImage />
-      <RecommendImage />
-      <Notify />
-      <Delivery />
-      <Benefit />
-      <Etc />
+      <Info data={data} setData={setData} />
+      <Option data={data} setData={setData} />
+      <IntroImage data={data} setData={setData} />
+      <RecommendImage data={data} setData={setData} />
+      <Notify data={data} setData={setData} />
+      <Delivery data={data} setData={setData} />
+      <Benefit data={data} setData={setData} />
+      <Etc data={data} setData={setData} />
     </S.Main>
   );
 }
