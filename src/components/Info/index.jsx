@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import FILTER_TAG_LIST from "commons/constants/filterTagList";
 import ImageAttachment from "../../commons/components/ImageAttachment";
 import FilterSearchResult from "./elements/FilterSearchResult";
+import Category from "./category/category";
 import * as S from "./styled";
 
 const productCode = Math.floor(Math.random() * 10000000000)
@@ -74,6 +75,7 @@ function Info({ data, setData }) {
         <tr>
           <S.Title colSpan="2">상품 기본 정보</S.Title>
         </tr>
+        <Category />
         <tr>
           <S.Content>필터태그</S.Content>
           <S.SettingBox colSpan="3">
