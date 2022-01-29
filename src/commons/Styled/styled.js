@@ -31,6 +31,13 @@ export const SettingBox = styled.td`
   border-bottom: 1px solid #cccccc;
 `;
 
+export const FullBox = styled.td`
+  background-color: #ffffff;
+  border-top: 1px solid #cccccc;
+  height: 180px;
+  width: 680px;
+`;
+
 export const CalendarBox = styled.div`
   display: flex;
   height: 56px;
@@ -44,4 +51,29 @@ export const CalendarMargin = styled.div`
 
 export const Text = styled.div`
   font-size: 18px;
+`;
+
+export const ImageInputBtn = styled.button`
+  padding: 8px 24px;
+  font-size: 16px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  margin: 24px 16px;
+`;
+
+export const FlexBox = styled.div`
+  display: flex;
+`;
+
+export const FileName = styled.div`
+  margin: 8px;
+`;
+
+export const FileDeleBtn = styled.button`
+  border: 1px solid #cccccc;
+  border-radius: 100%;
+  padding: 2px 6px;
+  background-color: #ffffff;
+  font-color: #000000;
+  margin-left: 8px;
 `;
