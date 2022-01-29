@@ -35,7 +35,7 @@ export const FullBox = styled.td`
   background-color: #ffffff;
   border-top: 1px solid #cccccc;
   height: 180px;
-  width: 660px;
+  width: 680px;
 `;
 
 export const CalendarBox = styled.div`
@@ -58,7 +58,7 @@ export const ImageInputBtn = styled.button`
   font-size: 16px;
   background-color: #ffffff;
   border-radius: 8px;
-  margin: 24px 8px;
+  margin: 24px 16px;
 `;
 
 export const FlexBox = styled.div`
