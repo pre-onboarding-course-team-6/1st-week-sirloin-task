@@ -70,13 +70,12 @@ function Info({ data, setData }) {
   }, [inputFields, savedTagList, selectedTags]);
 
   return (
-    <>
-    <Category/>
     <S.Table>
       <tbody>
         <tr>
           <S.Title colSpan="2">상품 기본 정보</S.Title>
         </tr>
+        <Category />
         <tr>
           <S.Content>필터태그</S.Content>
           <S.SettingBox colSpan="3">
@@ -170,7 +169,6 @@ function Info({ data, setData }) {
         </tr>
       </tbody>
     </S.Table>
-    </>
   );
 }
 
