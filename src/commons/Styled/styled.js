@@ -31,6 +31,13 @@ export const SettingBox = styled.td`
   border-bottom: 1px solid #cccccc;
 `;
 
+export const FullBox = styled.td`
+  background-color: #ffffff;
+  border-top: 1px solid #cccccc;
+  height: 180px;
+  width: 660px;
+`;
+
 export const CalendarBox = styled.div`
   display: flex;
   height: 56px;
@@ -46,12 +53,12 @@ export const Text = styled.div`
   font-size: 18px;
 `;
 
-export const PurpleButton = styled.button`
+export const ImageInputBtn = styled.button`
   padding: 8px 24px;
   font-size: 16px;
   background-color: #ffffff;
   border-radius: 8px;
-  margin: 8px;
+  margin: 24px 8px;
 `;
 
 export const FlexBox = styled.div`

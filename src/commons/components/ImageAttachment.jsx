@@ -1,6 +1,6 @@
 /* eslint-disable  */
 import React, { useEffect, useRef, useState } from "react";
-import {PurpleButton,FlexBox, FileDeleBtn,FileName} from "../Styled/styled"
+import {ImageInputBtn,FlexBox, FileDeleBtn,FileName} from "../Styled/styled"
 
 function ImageAttachment({ type, name, handleChangeInput }) {
   const [imgFiles, setImgFiles] = useState([]);
@@ -61,7 +61,7 @@ function ImageAttachment({ type, name, handleChangeInput }) {
         onChange={onImgChange}
         style={{ display: "none" }}
         />
-      <PurpleButton onClick={onImgInputBtnClick}>+ 이미지 추가</PurpleButton>
+      <ImageInputBtn onClick={onImgInputBtnClick}>+ 이미지 추가</ImageInputBtn>
       {imgFiles.map((file, index) => (
         <FileName key={index}>
           <span>{left}{file.name}{right}</span>
