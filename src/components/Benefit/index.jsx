@@ -1,9 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Toggle from "commons/utils/Toggle";
 import { Table, Title, Content, SettingBox } from "commons/Styled/styled";
 
-function Benefit() {
+function Benefit({ data, setData }) {
   const [toggle, setToggle] = useState(true);
+
+  useEffect(() => {
+    setData({
+      ...data,
+      productBenefitsSetting: {
+        ...data.productBenefitsSetting,
+        accumulationPoints: toggle,
+      },
+    });
+  }, [toggle]);
 
   return (
     <Table>

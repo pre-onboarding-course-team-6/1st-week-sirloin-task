@@ -1,9 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Toggle from "commons/utils/Toggle";
 import { Table, Title, Content, SettingBox } from "commons/Styled/styled";
 
-function Etc() {
+function Etc({ data, setData }) {
   const [toggle, setToggle] = useState(false);
+
+  useEffect(() => {
+    setData({
+      ...data,
+      etcSetting: {
+        ...data.etcSetting,
+        providingThankscard: toggle,
+      },
+    });
+  }, [toggle]);
 
   return (
     <Table>

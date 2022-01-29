@@ -12,8 +12,14 @@ const productCode = Math.floor(Math.random() * 10000000000)
   .toString(16)
   .toUpperCase();
 
-function Info() {
-  const [inputFields, setInputFields] = useState({ productCode });
+function Info({ data, setData }) {
+  const [inputFields, setInputFields] = useState({
+    productCode,
+    productComposition: "",
+    productName: "",
+    productRepresent: [],
+    productThumbnail: [],
+  });
   const [isFocusOn, setIsFocusOn] = useState(false);
   const [savedTagList, setSavedTagList] = useState([...FILTER_TAG_LIST]);
   const [selectedTags, setSelectedTags] = useState([]);
@@ -50,11 +56,17 @@ function Info() {
     setSavedTagList(result);
   };
 
-  // state 확인용 => App.js에서 최종 머지후 제거
   useEffect(() => {
-    console.log(`savedTagList : ${savedTagList}`);
-    console.log(`selectedTags : ${selectedTags}`);
-  }, [savedTagList, selectedTags]);
+    setData({
+      ...data,
+      basicProductInformation: {
+        ...data.basicProductInformation,
+        savedTagList,
+        selectedTags,
+        inputFields,
+      },
+    });
+  }, [inputFields, savedTagList, selectedTags]);
 
   return (
     <S.Table>
