@@ -22,7 +22,16 @@ function App() {
     productIntroImage: [],
     recommendationImage: [],
     informationNotify: [],
-    deliverySettings: {},
+    deliverySettings: {
+      apoint: false,
+      visit: false,
+      preOrder: false,
+      orderPeriod: { startDate: "", endDate: "" },
+      deliveryPeriod: {
+        dawn: "",
+        normal: "",
+      },
+    },
     productBenefitsSetting: { accumulationPoints: true },
     etcSetting: { providingThankscard: true },
   });

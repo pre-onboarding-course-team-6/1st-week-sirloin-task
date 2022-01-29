@@ -12,7 +12,7 @@ import SimpleCalendar from "commons/utils/SimpleCalendar";
 import { todayMaker, nextWeekMaker } from "commons/utils/DateMaker";
 import Toggle from "commons/utils/Toggle";
 
-function Delivery() {
+function Delivery({ data, setData }) {
   const today = todayMaker;
   const nextWeek = nextWeekMaker;
   const [apoint, setApoint] = useState(false);
@@ -66,6 +66,20 @@ function Delivery() {
       }
     }
   }, [orderPeriod, deliveryPeriod]);
+
+  useEffect(() => {
+    setData({
+      ...data,
+      deliverySettings: {
+        ...data.deliverySettings,
+        apoint,
+        visit,
+        preOrder,
+        orderPeriod,
+        deliveryPeriod,
+      },
+    });
+  }, [apoint, visit, preOrder, orderPeriod, deliveryPeriod]);
 
   return (
     <Table>
