@@ -180,14 +180,22 @@ function SellPeriod(props) {
   );
 }
 
-function ExposureSellPeriod() {
+function ExposureSellPeriod({ data, setData }) {
   const [exposure, setExposure] = useState("제한없음");
   const [sell, setSell] = useState("제한없음");
   const today = todayMaker;
   const nextWeek = nextWeekMaker;
 
-  console.log("exposure", exposure);
-  console.log("sell", sell);
+  useEffect(() => {
+    setData({
+      ...data,
+      exposureOrSalePeriod: {
+        ...data.exposureOrSalePeriod,
+        exposure,
+        sell,
+      },
+    });
+  }, [exposure, sell]);
 
   return (
     <Table>

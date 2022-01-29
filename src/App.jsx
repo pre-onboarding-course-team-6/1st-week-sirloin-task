@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Benefit from "components/Benefit";
 import Etc from "components/Etc";
 import ExposureSellPeriod from "components/ExposureSellPeriod";
@@ -11,13 +11,31 @@ import Delivery from "components/Delivery";
 import * as S from "styled";
 
 function App() {
+  const [data, setData] = useState({
+    exposureOrSalePeriod: { exposure: "", sell: "" },
+    basicProductInformation: {},
+    productOption: {},
+    productIntroImage: [],
+    recommendationImage: [],
+    informationNotify: [],
+    deliverySettings: {},
+    productBenefitsSetting: { accumulationPoints: true },
+    etcSetting: { providingThankscard: true },
+  });
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
   return (
     <S.Main>
       <S.Header>
         <h3>상품 등록</h3>
-        <button type="button">저장하기</button>
+        <button type="button" onClick={() => console.log(data)}>
+          저장하기
+        </button>
       </S.Header>
-      <ExposureSellPeriod />
+      <ExposureSellPeriod data={data} setData={setData} />
       <Info />
       <Option />
       <IntroImage />
