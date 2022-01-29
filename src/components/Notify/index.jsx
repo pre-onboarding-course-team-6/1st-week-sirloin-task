@@ -3,6 +3,7 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/button-has-type */
 import React, { useState } from "react";
+import { Table, FullBtn } from "commons/Styled/styled";
 import InformationNotice from "./elements/InformationNotice";
 import { INFO_NOTI_TEMPLATE } from "../../commons/constants/templates";
 
@@ -62,8 +63,8 @@ function Info() {
   };
 
   return (
-    <>
-      <form>
+    <Table>
+      <tbody>
         {inputFields.map((inputField, index) => (
           <InformationNotice
             key={index}
@@ -74,10 +75,15 @@ function Info() {
             mergeToInputFields={mergeToInputFields}
           />
         ))}
-      </form>
-      <button onClick={handleAddFields}>+ 정보고시 추가</button>
-      <button onClick={handleSubmit}>정보고시 console 출력</button>
-    </>
+        <div>
+          <form>
+            <FullBtn onClick={handleAddFields}>+ 정보고시 추가</FullBtn>
+            <br />
+            <FullBtn onClick={handleSubmit}>정보고시 console 출력</FullBtn>
+          </form>
+        </div>
+      </tbody>
+    </Table>
   );
 }
 
