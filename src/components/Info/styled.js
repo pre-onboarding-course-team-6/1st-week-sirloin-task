@@ -42,3 +42,25 @@ export const SplitRightBox = styled.td`
   width: 160px;
   border-bottom: 1px solid #cccccc;
 `;
+
+export const SearchBox = styled.div`
+  border-radius: 10px;
+  border: 2px solid #eee;
+  margin: 20px 0;
+`;
+
+export const FilterTag = styled.span`
+  border-radius: 4px;
+  padding: 5px 7px;
+  background-color: #e8f7d3;
+  margin-right: 10px;
+`;
+
+export const SelectedTag = styled.div`
+  width: 100%;
+  padding: 10px 10px;
+`;
+
+export const TagListBox = styled.div`
+  padding: 30px 20px;
+`;

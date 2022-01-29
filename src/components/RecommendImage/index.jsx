@@ -5,7 +5,7 @@ import ImageAttachment from "../../commons/components/ImageAttachment";
 function RecommendImage() {
   return (
     <Table>
-      <tobody>
+      <tbody>
         <tr>
           <Title>구매자 추천 이미지</Title>
         </tr>
@@ -14,7 +14,7 @@ function RecommendImage() {
             <ImageAttachment type="multiple" />
           </FullBox>
         </tr>
-      </tobody>
+      </tbody>
     </Table>
   );
 }
