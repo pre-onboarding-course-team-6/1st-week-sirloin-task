@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Table, Title, FullBox } from "commons/Styled/styled";
 import ImageAttachment from "../../commons/components/ImageAttachment";
 
-function IntroImage() {
+function IntroImage({ data, setData }) {
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    setData({
+      ...data,
+      productIntroImage: {
+        ...data.productIntroImage,
+        images,
+      },
+    });
+  }, [images]);
+
   return (
     <Table>
       <tbody>
@@ -11,7 +23,7 @@ function IntroImage() {
         </tr>
         <tr>
           <FullBox>
-            <ImageAttachment type="multiple" />
+            <ImageAttachment type="multiple" setImages={setImages} />
           </FullBox>
         </tr>
       </tbody>

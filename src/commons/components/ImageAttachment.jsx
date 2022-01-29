@@ -7,7 +7,7 @@ import {
   FileName,
 } from "../Styled/styled";
 
-function ImageAttachment({ type, name, handleChangeInput }) {
+function ImageAttachment({ type, name, handleChangeInput, setImages }) {
   const [imgFiles, setImgFiles] = useState([]);
 
   const imgInput = useRef(null);
@@ -50,7 +50,10 @@ function ImageAttachment({ type, name, handleChangeInput }) {
 
   // 이미지 파일 추가되면 handleChangeInput 호출
   useEffect(() => {
-    name && imgFiles.length && handleChangeInput(null, name, imgFiles);
+    if (imgFiles.length) {
+      name && imgFiles.length && handleChangeInput(null, name, imgFiles);
+      setImages(imgFiles);
+    }
   }, [imgFiles]);
   const left = "{{";
   const right = "}}";

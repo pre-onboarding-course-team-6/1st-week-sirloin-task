@@ -16,13 +16,7 @@ function App() {
     basicProductInformation: {
       savedTagList: [],
       selectedTags: [],
-      inputFields: {
-        productCode: "",
-        productComposition: "",
-        productName: "",
-        productRepresent: [],
-        productThumbnail: [],
-      },
+      inputFields: {},
     },
     productOption: {},
     productIntroImage: [],
