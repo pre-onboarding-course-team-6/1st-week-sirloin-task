@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Benefit from "components/Benefit";
 import Etc from "components/Etc";
 import ExposureSellPeriod from "components/ExposureSellPeriod";
@@ -35,10 +35,6 @@ function App() {
     productBenefitsSetting: { accumulationPoints: true },
     etcSetting: { providingThankscard: true },
   });
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
 
   return (
     <S.Main>
