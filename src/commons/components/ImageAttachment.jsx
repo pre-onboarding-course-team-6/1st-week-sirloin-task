@@ -1,6 +1,11 @@
 /* eslint-disable  */
 import React, { useEffect, useRef, useState } from "react";
-import {ImageInputBtn,FlexBox, FileDeleBtn,FileName} from "../Styled/styled"
+import {
+  ImageInputBtn,
+  FlexBox,
+  FileDeleBtn,
+  FileName,
+} from "../Styled/styled";
 
 function ImageAttachment({ type, name, handleChangeInput }) {
   const [imgFiles, setImgFiles] = useState([]);
@@ -45,7 +50,7 @@ function ImageAttachment({ type, name, handleChangeInput }) {
 
   // 이미지 파일 추가되면 handleChangeInput 호출
   useEffect(() => {
-    imgFiles.length && handleChangeInput(null, name, imgFiles);
+    name && imgFiles.length && handleChangeInput(null, name, imgFiles);
   }, [imgFiles]);
   const left = "{{";
   const right = "}}";
@@ -60,12 +65,18 @@ function ImageAttachment({ type, name, handleChangeInput }) {
         name="file"
         onChange={onImgChange}
         style={{ display: "none" }}
-        />
+      />
       <ImageInputBtn onClick={onImgInputBtnClick}>+ 이미지 추가</ImageInputBtn>
       {imgFiles.map((file, index) => (
         <FileName key={index}>
-          <span>{left}{file.name}{right}</span>
-          <FileDeleBtn onClick={(event) => handleImgDelete(index, event)}>x</FileDeleBtn>
+          <span>
+            {left}
+            {file.name}
+            {right}
+          </span>
+          <FileDeleBtn onClick={(event) => handleImgDelete(index, event)}>
+            x
+          </FileDeleBtn>
         </FileName>
       ))}
     </FlexBox>
