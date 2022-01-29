@@ -45,3 +45,28 @@ export const CalendarMargin = styled.div`
 export const Text = styled.div`
   font-size: 18px;
 `;
+
+export const PurpleButton = styled.button`
+  padding: 8px 24px;
+  font-size: 16px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  margin: 8px;
+`;
+
+export const FlexBox = styled.div`
+  display: flex;
+`;
+
+export const FileName = styled.div`
+  margin: 8px;
+`;
+
+export const FileDeleBtn = styled.button`
+  border: 1px solid #cccccc;
+  border-radius: 100%;
+  padding: 2px 6px;
+  background-color: #ffffff;
+  font-color: #000000;
+  margin-left: 8px;
+`;

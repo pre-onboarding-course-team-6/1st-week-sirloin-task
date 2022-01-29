@@ -1,10 +1,8 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable react/button-has-type */
+/* eslint-disable  */
 import React, { useEffect, useRef, useState } from "react";
+import {PurpleButton,FlexBox, FileDeleBtn,FileName} from "../Styled/styled"
 
-function ImageAttachment({ children, type, name, handleChangeInput }) {
+function ImageAttachment({ type, name, handleChangeInput }) {
   const [imgFiles, setImgFiles] = useState([]);
 
   const imgInput = useRef(null);
@@ -49,10 +47,11 @@ function ImageAttachment({ children, type, name, handleChangeInput }) {
   useEffect(() => {
     imgFiles.length && handleChangeInput(null, name, imgFiles);
   }, [imgFiles]);
+  const left = "{{";
+  const right = "}}";
 
   return (
-    <div>
-      <h3>{children}</h3>
+    <FlexBox>
       <input
         ref={imgInput}
         type="file"
@@ -61,15 +60,15 @@ function ImageAttachment({ children, type, name, handleChangeInput }) {
         name="file"
         onChange={onImgChange}
         style={{ display: "none" }}
-      />
-      <button onClick={onImgInputBtnClick}>+ 이미지 추가</button>
+        />
+      <PurpleButton onClick={onImgInputBtnClick}>+ 이미지 추가</PurpleButton>
       {imgFiles.map((file, index) => (
-        <div key={index} style={{ border: "1px solid red" }}>
-          <span>{file.name}</span>
-          <button onClick={(event) => handleImgDelete(index, event)}>x</button>
-        </div>
+        <FileName key={index}>
+          <span>{left}{file.name}{right}</span>
+          <FileDeleBtn onClick={(event) => handleImgDelete(index, event)}>x</FileDeleBtn>
+        </FileName>
       ))}
-    </div>
+    </FlexBox>
   );
 }
 
