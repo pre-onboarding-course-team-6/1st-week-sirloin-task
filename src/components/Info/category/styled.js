@@ -17,6 +17,15 @@ export const UL = styled.ul`
 `;
 export const Cate = styled.li`
   list-style: none;
+  margin: 5px 0;
+  padding: 5px 10px;
+  border: 1px solid #3b326e;
+  border-radius: 5px;
+  background-color: #ded9fa;
+`;
+export const CateBtn = styled.button`
+  background-color: transparent;
+  border-color: transparent;
 `;
 export const SettingBox = styled.td`
   padding: 8px;

@@ -35,9 +35,9 @@ function Category() {
     ? Array.from(checkedItems).map((cate) => (
         <S.Cate cate={cate} key={cate.id} id={cate.id} removeCate={removeCate}>
           <span>{cate}</span>
-          <button onClick={() => removeCate(cate.id)} type="button">
+          <S.CateBtn onClick={() => removeCate(cate.id)} type="button">
             X
-          </button>
+          </S.CateBtn>
         </S.Cate>
       ))
     : "카테고리를 지정해 주세요";
