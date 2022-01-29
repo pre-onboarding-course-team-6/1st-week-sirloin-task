@@ -4,8 +4,7 @@
 /* eslint-disable react/button-has-type */
 import React, { useState } from "react";
 import {
-  SpaceBetween,
-  Title,
+  TitleDiv,
   BlackDelBtn,
   ContentInfo,
   InputBox,
@@ -59,20 +58,25 @@ function InformationNotice({
   const right = "}}";
 
   return (
-    <tr>
-      <SpaceBetween>
-        <Title>
-          정보고시{" "}
-          <span>
-            {left}
-            {index + 1}
-            {right}
-          </span>
-        </Title>
-        <BlackDelBtn onClick={(event) => handleDeleteFields(index, event)}>
-          삭제
-        </BlackDelBtn>
-      </SpaceBetween>
+    <>
+      <TableRow>
+        <td>
+          <TitleDiv>
+            정보고시{" "}
+            <span>
+              {left}
+              {index + 1}
+              {right}
+            </span>
+          </TitleDiv>
+        </td>
+        <td style={{ textAlign: "right" }}>
+          <BlackDelBtn onClick={(event) => handleDeleteFields(index, event)}>
+            삭제
+          </BlackDelBtn>
+        </td>
+      </TableRow>
+
       <TableRow>
         <ContentInfo>제품명 / 중량</ContentInfo>
         <InputBox>
@@ -153,9 +157,12 @@ function InformationNotice({
           handleDeleteMore={handleDeleteMore}
         />
       ))}
-
-      <AddBtn onClick={handleAddFields}>+ 항목 추가</AddBtn>
-    </tr>
+      <TableRow>
+        <td>
+          <AddBtn onClick={handleAddFields}>+ 항목 추가</AddBtn>
+        </td>
+      </TableRow>
+    </>
   );
 }
 

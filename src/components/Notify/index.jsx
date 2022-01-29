@@ -9,7 +9,6 @@ import { INFO_NOTI_TEMPLATE } from "../../commons/constants/templates";
 
 function Info() {
   const [inputFields, setInputFields] = useState([{ ...INFO_NOTI_TEMPLATE }]);
-
   const handleDeleteFields = (index, event) => {
     event.preventDefault();
 
@@ -26,19 +25,6 @@ function Info() {
 
   const handleAddFields = () => {
     setInputFields([...inputFields, { ...INFO_NOTI_TEMPLATE }]);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // 객체 -> 배열 -> 필터링 -> 객체
-    const result = inputFields.map((obj) => {
-      const parsedArr = Object.entries(obj).filter((arr) => arr[1] !== "");
-
-      return Object.fromEntries(parsedArr);
-    });
-
-    console.log(result);
   };
 
   const handleChangeInput = (index, event) => {
@@ -75,13 +61,11 @@ function Info() {
             mergeToInputFields={mergeToInputFields}
           />
         ))}
-        <div>
-          <form>
+        <tr>
+          <td colSpan="2">
             <FullBtn onClick={handleAddFields}>+ 정보고시 추가</FullBtn>
-            <br />
-            <FullBtn onClick={handleSubmit}>정보고시 console 출력</FullBtn>
-          </form>
-        </div>
+          </td>
+        </tr>
       </tbody>
     </Table>
   );

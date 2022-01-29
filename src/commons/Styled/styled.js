@@ -14,6 +14,13 @@ export const Title = styled.td`
   width: 120px;
 `;
 
+export const TitleDiv = styled.div`
+  font-size: 18px;
+  font-weight: 600;
+  padding: 12px;
+  width: 120px;
+`;
+
 export const Content = styled.td`
   width: 120px;
   font-size: 16px;
