@@ -53,21 +53,12 @@ function InformationNotice({
     setMoreFields(values);
     mergeToInputFields(index, values); // 정보 고시에 merge
   };
-
-  const left = "{{";
-  const right = "}}";
-
   return (
     <>
       <TableRow>
         <td>
           <TitleDiv>
-            정보고시{" "}
-            <span>
-              {left}
-              {index + 1}
-              {right}
-            </span>
+            정보고시 <span>{index + 1}</span>
           </TitleDiv>
         </td>
         <td style={{ textAlign: "right" }}>
