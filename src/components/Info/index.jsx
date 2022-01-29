@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import FILTER_TAG_LIST from "commons/constants/filterTagList";
 import ImageAttachment from "../../commons/components/ImageAttachment";
 import FilterSearchResult from "./elements/FilterSearchResult";
+import Category from "./category/category";
 import * as S from "./styled";
 
 const productCode = Math.floor(Math.random() * 10000000000)
@@ -69,6 +70,8 @@ function Info({ data, setData }) {
   }, [inputFields, savedTagList, selectedTags]);
 
   return (
+    <>
+    <Category/>
     <S.Table>
       <tbody>
         <tr>
@@ -167,6 +170,7 @@ function Info({ data, setData }) {
         </tr>
       </tbody>
     </S.Table>
+    </>
   );
 }
 
