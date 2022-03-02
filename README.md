@@ -33,7 +33,7 @@ Date, Time Picker를 구현하는데 Mui 라이브러리 사용했습니다.
 마찬가지로 Mui의 Date, Time Picker와 Toggle 버튼을 사용했습니다.
 비즈니스 로직상 사용자 배송일 출발일 지정은 복수선택이 가능하지만 선 주문 예약 배송과는 중복될 수 없습니다.
 
-![image](https://user-images.githubusercontent.com/40172373/156303133-ca525bbd-9dc1-4a68-86bf-52d9d2af8708.png![delivery](https://user-images.githubusercontent.com/40172373/156303877-a87d1424-be97-4d2c-8167-6888da23084d.gif)
+![delivery](https://user-images.githubusercontent.com/40172373/156303877-a87d1424-be97-4d2c-8167-6888da23084d.gif)
 
 ### 상품 혜택 허용 설정, 기타 설정
 
