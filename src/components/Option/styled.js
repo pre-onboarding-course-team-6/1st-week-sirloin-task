@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const MainBox = styled.div`
-  margin: 24px;
+  margin: 24px 0;
   border: 1px solid #cccccc;
-  width: 680px;
+  width: 730px;
 `;
 
 export const FlexBox = styled.div`

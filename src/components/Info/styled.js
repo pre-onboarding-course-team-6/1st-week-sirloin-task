@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const Table = styled.table`
   border-spacing: 0;
   border: 1px solid #cccccc;
-  margin: 24px;
+  margin: 24px 0;
+  width: 100%;
 `;
 
 export const Title = styled.td`

@@ -3,8 +3,7 @@ import styled from "styled-components";
 export const Table = styled.table`
   border-spacing: 0;
   border: 1px solid #cccccc;
-  margin: 24px;
-  width: 680px;
+  margin: 24px 0;
 `;
 
 export const Title = styled.td`
@@ -34,7 +33,7 @@ export const Content = styled.td`
 
 export const SettingBox = styled.td`
   padding: 8px;
-  width: 540px;
+  width: 610px;
   min-width: 240px;
   border-bottom: 1px solid #cccccc;
 `;
@@ -43,7 +42,7 @@ export const FullBox = styled.td`
   background-color: #ffffff;
   border-top: 1px solid #cccccc;
   height: 180px;
-  width: 680px;
+  width: 730px;
 `;
 
 export const CalendarBox = styled.div`
@@ -66,7 +65,7 @@ export const ImageInputBtn = styled.button`
   font-size: 16px;
   background-color: #ffffff;
   border-radius: 8px;
-  margin: 24px 16px;
+  margin: 24px 0;
 `;
 
 export const FlexBox = styled.div`
@@ -101,7 +100,7 @@ export const BlackDelBtn = styled.button`
   font-size: 16px;
   background-color: #ffffff;
   border-radius: 8px;
-  margin: 24px 16px;
+  margin: 24px;
 `;
 
 export const ContentInfo = styled.td`
@@ -120,9 +119,7 @@ export const InputBox = styled.td`
   border-top: 0;
 `;
 
-export const TableRow = styled.tr`
-  width: 600px;
-`;
+export const TableRow = styled.tr``;
 
 export const CustomInput = styled.input`
   padding: 8px;

@@ -67,7 +67,6 @@ function InformationNotice({
           </BlackDelBtn>
         </td>
       </TableRow>
-
       <TableRow>
         <ContentInfo>제품명 / 중량</ContentInfo>
         <InputBox>
@@ -138,7 +137,6 @@ function InformationNotice({
           />
         </InputBox>
       </TableRow>
-
       {moreFields.map((moreField, moreIndex) => (
         <MoreInfoNoti
           key={moreIndex}

@@ -12,7 +12,7 @@ function MoreInfoNoti({ handleChangeMore, moreIndex, handleDeleteMore }) {
     <TableRow>
       <InputBox>
         <CustomInput
-          style={{ width: "360px" }}
+          style={{ width: "302px" }}
           type="text"
           name="moreInfoTitle"
           id="moreInfoTitle"
